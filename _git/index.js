@@ -1,7 +1,7 @@
 /*
  * @Author: 码上talk|RC
  * @Date: 2020-06-29 14:20:44
- * @LastEditTime: 2020-06-29 14:38:30
+ * @LastEditTime: 2020-06-29 14:45:35
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/_git/index.js
@@ -35,12 +35,10 @@ var _post = (url, form, callback) => {
 
 const run = () => {
     var qq_push_url = 'http://127.0.0.1:8080/git/group/push'
-    var post_form = {
-    }
     _cmd('git show -s', (stdout) => {
         _post(qq_push_url, {
             group: [],
-            msg: `tacomall-springboot项目已更新：\n ${stdout} \n 链接：https://gitee.com/running-cat/tacomall-springboot`
+            msg: `tacomall-springboot项目已更新：\n ${stdout} \n 链接：https://gitee.com/running-cat/tacomall-springboot \n --消息来之git自动化推送`
         })
     })
 }
