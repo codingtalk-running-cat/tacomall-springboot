@@ -3888,37 +3888,47 @@
       "chnname": "管理模块",
       "entities": [
         {
-          "title": "admin_user_auth_role",
+          "title": "admin_auth_role",
           "fields": [
             {
-              "name": "REVISION",
+              "name": "id",
               "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
             },
             {
-              "name": "CREATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
+              "name": "name",
+              "type": "DefaultString",
+              "remark": "权限角色名",
+              "chnname": ""
             },
             {
-              "name": "CREATED_TIME",
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
+            },
+            {
+              "name": "delete_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
+              "remark": "删除时间",
+              "chnname": ""
             },
             {
-              "name": "UPDATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "UPDATED_TIME",
+              "name": "create_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
+              "remark": "创建时间",
+              "chnname": ""
+            },
+            {
+              "name": "update_time",
+              "type": "DateTime",
+              "remark": "更新时间",
+              "chnname": ""
             }
           ],
           "indexs": [],
@@ -3971,37 +3981,47 @@
           "chnname": "管理权限角色表"
         },
         {
-          "title": "admin_user_auth_rule",
+          "title": "admin_auth_rule",
           "fields": [
             {
-              "name": "REVISION",
+              "name": "id",
               "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
             },
             {
-              "name": "CREATED_BY",
+              "name": "name",
               "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
+              "remark": "规则名称",
+              "chnname": ""
             },
             {
-              "name": "CREATED_TIME",
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
+            },
+            {
+              "name": "create_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
+              "remark": "删除时间",
+              "chnname": ""
             },
             {
-              "name": "UPDATED_BY",
+              "name": "update_time",
               "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
+              "remark": "更新时间",
+              "chnname": ""
             },
             {
-              "name": "UPDATED_TIME",
+              "name": "delete_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
+              "remark": "删除时间",
+              "chnname": ""
             }
           ],
           "indexs": [],
@@ -4054,37 +4074,158 @@
           "chnname": "管理权限规则表"
         },
         {
-          "title": "admin_user_auth_role_mapping_rule",
+          "title": "admin_auth_rule_view",
           "fields": [
             {
-              "name": "REVISION",
+              "name": "id",
               "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
             },
             {
-              "name": "CREATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
+              "name": "rule_id",
+              "type": "Integer",
+              "remark": "规则外键",
+              "chnname": ""
             },
             {
-              "name": "CREATED_TIME",
+              "name": "name",
+              "type": "DefaultString",
+              "remark": "视图名称",
+              "chnname": ""
+            },
+            {
+              "name": "path",
+              "type": "DefaultString",
+              "remark": "视图地址",
+              "chnname": ""
+            },
+            {
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
+            },
+            {
+              "name": "create_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
+              "remark": "创建时间",
+              "chnname": ""
             },
             {
-              "name": "UPDATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "UPDATED_TIME",
+              "name": "update_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
+              "remark": "更新时间",
+              "chnname": ""
+            },
+            {
+              "name": "delete_time",
+              "type": "DateTime",
+              "remark": "删除时间",
+              "chnname": ""
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "管理权限规则视图表"
+        },
+        {
+          "title": "admin_auth_role_mapping_rule",
+          "fields": [
+            {
+              "name": "id",
+              "type": "Integer",
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "role_id",
+              "type": "Integer",
+              "remark": "角色外键",
+              "chnname": ""
+            },
+            {
+              "name": "rule_id",
+              "type": "Integer",
+              "remark": "规则外键",
+              "chnname": ""
+            },
+            {
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "创建时间",
+              "chnname": ""
+            },
+            {
+              "name": "update_time",
+              "type": "DateTime",
+              "remark": "更新时间",
+              "chnname": ""
+            },
+            {
+              "name": "delete_time",
+              "type": "DateTime",
+              "remark": "删除时间",
+              "chnname": ""
             }
           ],
           "indexs": [],
@@ -4135,89 +4276,6 @@
             }
           ],
           "chnname": "管理权限角色/规则关联表"
-        },
-        {
-          "title": "admin",
-          "fields": [
-            {
-              "name": "REVISION",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "CREATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "CREATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "UPDATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "UPDATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "平台"
         },
         {
           "title": "admin_delivery",
@@ -4306,28 +4364,50 @@
           "title": "admin_user_login_logger",
           "fields": [
             {
+              "name": "id",
+              "type": "Integer",
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "user_id",
+              "type": "Integer",
+              "remark": "用户外键",
+              "chnname": ""
+            },
+            {
+              "name": "ip",
+              "type": "DefaultString",
+              "remark": "ip地址",
+              "chnname": ""
+            },
+            {
               "name": "is_delete",
               "type": "Integer",
-              "remark": "",
-              "chnname": "删除标记"
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
             },
             {
               "name": "create_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
+              "remark": "创建时间",
+              "chnname": ""
             },
             {
               "name": "update_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
+              "remark": "更新时间",
+              "chnname": ""
             },
             {
               "name": "delete_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
+              "remark": "删除时间",
+              "chnname": ""
             }
           ],
           "indexs": [],
@@ -4383,28 +4463,62 @@
           "title": "admin_user",
           "fields": [
             {
+              "name": "id",
+              "type": "Integer",
+              "remark": "组件",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "auth_role_id",
+              "type": "Integer",
+              "remark": "权限角色外键",
+              "chnname": ""
+            },
+            {
+              "name": "username",
+              "type": "DefaultString",
+              "remark": "用户名",
+              "chnname": ""
+            },
+            {
+              "name": "passwd",
+              "type": "MiddleString",
+              "remark": "密码",
+              "chnname": ""
+            },
+            {
+              "name": "status",
+              "type": "Integer",
+              "remark": "1",
+              "chnname": ""
+            },
+            {
               "name": "is_delete",
               "type": "Integer",
-              "remark": "",
-              "chnname": "删除标记"
+              "remark": "删除标记",
+              "chnname": "",
+              "defaultValue": "0"
             },
             {
               "name": "create_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
+              "remark": "创建时间",
+              "chnname": ""
             },
             {
               "name": "update_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
+              "remark": "更新时间",
+              "chnname": ""
             },
             {
               "name": "delete_time",
               "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
+              "remark": "删除时间",
+              "chnname": ""
             }
           ],
           "indexs": [],
@@ -4454,7 +4568,7 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "平台管理员"
+          "chnname": "平台用户"
         }
       ],
       "graphCanvas": {

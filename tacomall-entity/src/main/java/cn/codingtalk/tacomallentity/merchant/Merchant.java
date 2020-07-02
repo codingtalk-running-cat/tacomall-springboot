@@ -1,13 +1,13 @@
 /***
  * @Author: 码上talk|RC
- * @Date: 2020-06-12 15:38:07
- * @LastEditTime: 2020-06-12 18:24:23
+ * @Date: 2020-07-02 09:14:25
+ * @LastEditTime: 2020-07-02 09:15:21
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-entity\src\main\java\cn\codingtalk\tacomallentity\admin\AdminUserAuthRule.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/merchant/Merchant.java
  * @Just do what I think it is right
  */
-package cn.codingtalk.tacomallentity.admin;
+package cn.codingtalk.tacomallentity.merchant;
 
 import java.util.Date;
 
@@ -15,11 +15,14 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
 
 @Data
-public class AdminUserAuthRule {
+public class Merchant {
+
     @TableId(value = "id", type = IdType.AUTO)
-    private int id; 
-    
-    private String name;
+    private int id;
+
+    private String username;
+
+    private String passwd;
 
     private int is_delete;
 

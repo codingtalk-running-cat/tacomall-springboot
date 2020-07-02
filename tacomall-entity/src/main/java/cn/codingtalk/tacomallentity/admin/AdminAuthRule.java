@@ -1,23 +1,26 @@
 /***
  * @Author: 码上talk|RC
- * @Date: 2020-06-12 15:38:22
- * @LastEditTime: 2020-06-12 15:38:23
+ * @Date: 2020-06-12 15:38:07
+ * @LastEditTime: 2020-07-02 14:24:06
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-entity\src\main\java\cn\codingtalk\tacomallentity\admin\AdminAuthRoleMappingRule.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/admin/AdminAuthRule.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallentity.admin;
 
+import java.util.List;
 import java.util.Date;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
 
 @Data
-public class AdminUserAuthRoleMappingRule {
+public class AdminAuthRule {
     @TableId(value = "id", type = IdType.AUTO)
-    private int id; 
+    private int id;
+
+    private String name;
 
     private int is_delete;
 
@@ -26,4 +29,7 @@ public class AdminUserAuthRoleMappingRule {
     private Date updateTime;
 
     private Date deleteTime;
+
+    @TableField(exist = false)
+    private List<AdminAuthRuleView> view;
 }

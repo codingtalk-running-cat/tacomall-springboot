@@ -1,46 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.codingtalk.tacomallmapper.admin.AdmimUserMapper">
+<mapper namespace="cn.codingtalk.tacomallmapper.admin.AdminUserMapper">
 
-    <resultMap id="authRole" type="cn.codingtalk.tacomallentity.admin.AdminUserAuthRole">
+    <resultMap id="userInfo" type="cn.codingtalk.tacomallentity.admin.AdminUser">
         <id property="id" column="id" />
-        <result property="name" column="name" />
+        <result property="username" column="username" />
+        <association property="role" column="auth_role_id" select="cn.codingtalk.tacomallmapper.admin.AdminAuthRoleMapper.getAuthRole"></association>
+        <collection property="rule" column="auth_role_id" select="cn.codingtalk.tacomallmapper.admin.AdminAuthRuleMapper.getAuthRuleByRoleId"></collection>
     </resultMap>
 
-    <resultMap id="authRule" type="cn.codingtalk.tacomallentity.admin.AdminUserAuthRule">
-        <id property="id" column="id" />
-        <result property="name" column="name" />
-    </resultMap>
-
-
-    <select id="getAuthRole" resultMap="authRole">
-        select *
-        from member u
-        <choose>
-            <when test="key=='id'">
-                where u.id = #{value}
-            </when>
-            <when test="key=='open_id'">
-                left join member_weixin wa
-                on u.id = wa.member_id
-                where wa.open_id = #{value}
-            </when>
-        </choose>
-    </select>
-
-    <select id="getAuthRule" resultMap="authRule">
-        select *
-        from member u
-        <choose>
-            <when test="key=='id'">
-                where u.id = #{value}
-            </when>
-            <when test="key=='open_id'">
-                left join member_weixin wa
-                on u.id = wa.member_id
-                where wa.open_id = #{value}
-            </when>
-        </choose>
+    <select id="getUserInfo" resultMap="userInfo">
+        SELECT *
+        FROM admin_user au
+        WHERE au.id = #{id}
     </select>
 
 </mapper>

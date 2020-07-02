@@ -1,16 +1,15 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-12 21:45:51
+ * @LastEditTime: 2020-07-02 09:28:19
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-api\tacomall-api-admin\src\main\java\cn\codingtalk\tacomallapiadmin\aspect\LoginLoggerAspect.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/cn/codingtalk/tacomallapiadmin/aspect/LoginLoggerAspect.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallapiadmin.aspect;
 
 import java.util.Date;
-import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -29,7 +28,6 @@ import cn.codingtalk.tacomallcommon.utils.JsonUtil;
 import cn.codingtalk.tacomallcommon.utils.IpUtil;
 import cn.codingtalk.tacomallentity.admin.AdminUserLoginLogger;
 import cn.codingtalk.tacomallmapper.admin.AdminUserLoginLoggerMapper;
-import cn.codingtalk.tacomallapiadmin.annotation.LoginLogger;
 
 @Aspect
 @Component
@@ -57,13 +55,9 @@ public class LoginLoggerAspect {
 
     private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
 
         AdminUserLoginLogger adminUserLoginLogger = new AdminUserLoginLogger();
-        if (method.getAnnotation(LoginLogger.class) != null) {
-            LoginLogger loginLogger = method.getAnnotation(LoginLogger.class);
-            adminUserLoginLogger.setOperation(loginLogger.value());
-        }
+
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = signature.getName();
         this.logger.info(className + "." + methodName + "()");

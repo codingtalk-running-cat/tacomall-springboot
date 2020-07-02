@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-12 17:22:10
+ * @LastEditTime: 2020-07-02 09:35:35
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-api\tacomall-api-admin\src\main\java\cn\codingtalk\tacomallapiadmin\config\ShiroConfig.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/cn/codingtalk/tacomallapiadmin/config/ShiroConfig.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallapiadmin.config;
@@ -24,8 +24,6 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.codingtalk.tacomallapiadmin.shiro.*;
-
 @Configuration
 public class ShiroConfig {
 
@@ -33,8 +31,8 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map filterChainDefinitionMap = new LinkedHashMap();
-        filterChainDefinitionMap.put("/admin/index/login", "anon");
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/admin/user/login", "anon");
         filterChainDefinitionMap.put("/**", "corsAuthenticationFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         Map<String, Filter> filterMap = new LinkedHashMap<>();

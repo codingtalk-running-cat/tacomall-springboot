@@ -1,3 +1,12 @@
+/***
+ * @Author: 码上talk|RC
+ * @Date: 2020-06-09 23:20:41
+ * @LastEditTime: 2020-07-02 14:43:43
+ * @LastEditors: 码上talk|RC
+ * @Description: 
+ * @FilePath: /tacomall-springboot/tacomall-common/src/main/java/cn/codingtalk/tacomallcommon/utils/JwtUtil.java
+ * @Just do what I think it is right
+ */
 package cn.codingtalk.tacomallcommon.utils;
 
 import java.util.Map;
@@ -13,34 +22,42 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
-public class JwtUtil {
-    private static final String SECRET = "cn.codingtalk.secret";
-    private static final String ISSUER = "user";
+import cn.codingtalk.tacomallcommon.exceptionInterceptor.exception.BizException;
 
-    public static String create(Map<String, String> claims) {
+public class JwtUtil {
+
+    private String SECRET = "codingtalk";
+    private String ISSUER = "";
+
+    public JwtUtil setISSUER(String ISSUER) {
+        this.ISSUER = ISSUER;
+        return this;
+    }
+
+
+    public String create(Map<String, String> claims) throws Exception {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(this.SECRET);
             JWTCreator.Builder builder = JWT.create()
-                    .withIssuer(ISSUER)
+                    .withIssuer(this.ISSUER)
                     .withExpiresAt(DateUtil.addHours(new Date(), 2));
             claims.forEach(builder::withClaim);
             return builder.sign(algorithm);
         } catch (IllegalArgumentException | JWTCreationException e) {
-            ExceptionUtil.throwServerException("生成token失败");
+            throw new BizException("生成token失败");
         }
-        return "";
     }
 
-    public static Map<String, String> verify(String token) {
+    public Map<String, String> verify(String token) throws Exception {
         Algorithm algorithm;
-        Map<String, Claim> map = new HashMap<>();
+        Map<String, Claim> map;
         try {
-            algorithm = Algorithm.HMAC256(SECRET);
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer(ISSUER).build();
+            algorithm = Algorithm.HMAC256(this.SECRET);
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer(this.ISSUER).build();
             DecodedJWT jwt = verifier.verify(token);
             map = jwt.getClaims();
         } catch (JWTVerificationException e) {
-            ExceptionUtil.throwServerException("鉴权失败");
+            throw new BizException("鉴权失败");
         }
         Map<String, String> resultMap = new HashMap<>(map.size());
         map.forEach((k, v) -> resultMap.put(k, v.asString()));

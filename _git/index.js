@@ -1,7 +1,7 @@
 /*
  * @Author: 码上talk|RC
  * @Date: 2020-06-29 14:20:44
- * @LastEditTime: 2020-06-29 14:45:35
+ * @LastEditTime: 2020-06-29 16:06:46
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/_git/index.js
@@ -33,7 +33,7 @@ var _post = (url, form, callback) => {
     })
 }
 
-const run = () => {
+var run = () => {
     var qq_push_url = 'http://127.0.0.1:8080/git/group/push'
     _cmd('git show -s', (stdout) => {
         _post(qq_push_url, {

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-18 20:44:59
+ * @LastEditTime: 2020-07-02 14:47:13
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/cn/codingtalk/tacomallapiportal/service/member/impl/MemberServiceImpl.java
@@ -60,7 +60,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
     @Override
     public ResponseVo<String> wxMaLogin(String iv, String code, String appid, String rawData, String signature,
-            String encryptedData) throws Exception{
+            String encryptedData) throws Exception {
         final WxMaService wxService = WxMaConfig.getMaService(appid);
         ResponseVo<String> responseVo = new ResponseVo<>();
         WxMaJscode2SessionResult session;
@@ -117,7 +117,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         try {
             Map<String, String> claims = new HashMap<>(1);
             claims.put("id", IntUtil.toString(member.getId()));
-            token = JwtUtil.create(claims);
+            JwtUtil jwtUtil = new JwtUtil();
+            jwtUtil.setISSUER("api-portal");
+            token = jwtUtil.create(claims);
         } catch (Exception e) {
             ExceptionUtil.throwBizException("token生成失败");
         }

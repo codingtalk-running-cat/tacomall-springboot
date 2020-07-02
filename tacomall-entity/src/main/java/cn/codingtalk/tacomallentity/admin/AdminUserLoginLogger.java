@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-12 15:37:09
- * @LastEditTime: 2020-06-12 17:46:49
+ * @LastEditTime: 2020-07-01 21:05:58
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-entity\src\main\java\cn\codingtalk\tacomallentity\admin\AdminUserLoginLogger.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/admin/AdminUserLoginLogger.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallentity.admin;
@@ -19,9 +19,7 @@ public class AdminUserLoginLogger {
     @TableId(value = "id", type = IdType.AUTO)
     private int id; 
 
-    private int adminId;
-
-    private String operation;
+    private int userId;
 
     private String ip;
 

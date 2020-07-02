@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-12 17:27:58
+ * @LastEditTime: 2020-07-02 14:46:25
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-api\tacomall-api-portal\src\main\java\cn\codingtalk\tacomallapiportal\interceptor\AuthorizationInterceptor.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/cn/codingtalk/tacomallapiportal/interceptor/AuthorizationInterceptor.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallapiportal.interceptor;
@@ -29,9 +29,6 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     private static final String TOKEN_KEY = "x-access-token";
     public static final String USER_KEY = "LOGIN_USER_KEY";
 
-    @Autowired(required = false)
-    private JwtUtil jwtUtil;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod)) {
@@ -55,7 +52,9 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
                 if (StringUtil.isBlank(token)) {
                     ExceptionUtil.throwUnauthorizedException("token不能为空");
                 }
-                Map<String, String> res = JwtUtil.verify(token);
+                JwtUtil jwtUtil = new JwtUtil();
+                jwtUtil.setISSUER("api-portal");
+                Map<String, String> res = jwtUtil.verify(token);
                 request.setAttribute(USER_KEY, res);
             }
         }
