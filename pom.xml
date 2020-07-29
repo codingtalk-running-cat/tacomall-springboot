@@ -44,7 +44,7 @@
         <tacomall.mapper.version>1.0-SNAPSHOT</tacomall.mapper.version>
         <tacomall.common.version>1.0-SNAPSHOT</tacomall.common.version>
         <spring.boot.version>2.1.7.RELEASE</spring.boot.version>
-        <mybatisplus.boot.starter.version>3.1.0</mybatisplus.boot.starter.version>
+        <mybatisplus.boot.starter.version>3.3.2</mybatisplus.boot.starter.version>
         <bomidou.jobs.version>1.0.3</bomidou.jobs.version>
         <baomidou.mybatisplusgenerator.version>3.3.0</baomidou.mybatisplusgenerator.version>
         <fastjson.version>1.2.58</fastjson.version>

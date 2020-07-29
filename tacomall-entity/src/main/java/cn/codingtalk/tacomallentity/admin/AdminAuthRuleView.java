@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-01 21:04:40
- * @LastEditTime: 2020-07-02 17:21:02
+ * @LastEditTime: 2020-07-24 10:35:37
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/admin/AdminAuthRuleView.java
@@ -23,7 +23,7 @@ public class AdminAuthRuleView {
 
     private String path;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 

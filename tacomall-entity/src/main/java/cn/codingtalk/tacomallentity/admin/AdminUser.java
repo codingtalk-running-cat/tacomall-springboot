@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-12 17:32:54
- * @LastEditTime: 2020-07-02 10:53:49
+ * @LastEditTime: 2020-07-24 10:35:47
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/admin/AdminUser.java
@@ -28,7 +28,7 @@ public class AdminUser {
 
     private int status;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 

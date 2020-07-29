@@ -1,13 +1,16 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-18 20:45:35
+ * @LastEditTime: 2020-07-29 09:25:59
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/cn/codingtalk/tacomallapiportal/controller/MemberController.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallapiportal.controller;
+
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,9 +21,13 @@ import io.swagger.annotations.*;
 
 import cn.codingtalk.tacomallapiportal.annotation.IgnoreAuth;
 import cn.codingtalk.tacomallapiportal.annotation.RequireAuth;
+import cn.codingtalk.tacomallentity.cart.Cart;
 import cn.codingtalk.tacomallentity.member.Member;
+import cn.codingtalk.tacomallentity.order.Order;
 import cn.codingtalk.tacomallcommon.vo.ResponseVo;
-import cn.codingtalk.tacomallapiportal.service.member.MemberService;
+import cn.codingtalk.tacomallapiportal.service.MemberService;
+import cn.codingtalk.tacomallapiportal.service.CartService;
+import cn.codingtalk.tacomallapiportal.service.OrderService;
 
 @Api(tags = "用户模块")
 @RestController
@@ -29,6 +36,12 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private OrderService orderService;
 
     /***
      * @description: 微信用户登录
@@ -48,7 +61,7 @@ public class MemberController {
             @RequestParam(value = "code") String code, @RequestParam(value = "appid") String appid,
             @RequestParam(value = "rawData") String rawData, @RequestParam(value = "signature") String signature,
             @RequestParam(value = "encryptedData") String encryptedData) throws Exception {
-        return memberService.wxMaLogin(iv, code, appid, rawData, signature, encryptedData);
+        return this.memberService.wxMaLogin(iv, code, appid, rawData, signature, encryptedData);
     }
 
     /***
@@ -61,6 +74,59 @@ public class MemberController {
     @RequireAuth
     @PostMapping("info")
     public ResponseVo<Member> info() {
-        return memberService.info();
+        return this.memberService.info();
+    }
+
+    /***
+     * @description: 添加用户购物车
+     * @param {type}
+     * @return:
+     */
+    @ApiOperation(value = "添加购物车", notes = "添加购物车接口", httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "goodItems", value = "goodItems", required = true, paramType = "path"), })
+    @RequireAuth
+    @PostMapping("addCarts")
+    public ResponseVo<String> addCart(@RequestParam(value = "goodItems") List<Map<String, Object>> goodItems) {
+        return this.cartService.addCarts(goodItems);
+    }
+
+    /***
+     * @description:
+     * @param {type} 获取用户购物车
+     * @return:
+     */
+    @ApiOperation(value = "用户购物车", notes = "用户购物车接口", httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequireAuth
+    @PostMapping("getCarts")
+    public ResponseVo<List<Cart>> getCarts() {
+        return this.cartService.getCarts();
+    }
+
+    /***
+     * @description:
+     * @param {type} 添加用户订单
+     * @return:
+     */
+    @ApiOperation(value = "添加用户订单", notes = "添加用户订单接口", httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequireAuth
+    @PostMapping("addOrder")
+    public ResponseVo<Order> addOrder() {
+        return this.orderService.addOrder();
+    }
+
+    /***
+     * @description:
+     * @param {type} 获取用户订单
+     * @return:
+     */
+    @ApiOperation(value = "用户订单", notes = "用户订单接口", httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequireAuth
+    @PostMapping("getOrderPage")
+    public ResponseVo<List<Order>> getOrderPage() {
+        return this.orderService.getOrderPage();
     }
 }

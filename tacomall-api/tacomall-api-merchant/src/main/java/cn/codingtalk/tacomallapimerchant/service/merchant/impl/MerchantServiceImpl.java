@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-02 14:49:36
+ * @LastEditTime: 2020-07-15 11:28:32
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/cn/codingtalk/tacomallapimerchant/service/merchant/impl/MerchantServiceImpl.java
@@ -10,6 +10,7 @@
 package cn.codingtalk.tacomallapimerchant.service.merchant.impl;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -46,7 +47,7 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant> i
         }
         String token = "";
         try {
-            HashMap<String, String> claims = new HashMap<>(1);
+            Map<String, String> claims = new HashMap<>(1);
             claims.put("id", IntUtil.toString(merchant.getId()));
             JwtUtil jwtUtil = new JwtUtil();
             jwtUtil.setISSUER("api-merchant");

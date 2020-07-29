@@ -63,3 +63,12 @@ hs_err_pid*
 # node_modules
 
 node_modules/*
+
+# git_hook
+
+.git_hook
+package.json
+package-lock.json
+
+# jd
+.jd

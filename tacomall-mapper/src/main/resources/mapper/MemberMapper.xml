@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.codingtalk.tacomallmapper.member.MemberMapper">
 
-    <resultMap id="member" type="cn.codingtalk.tacomallentity.member.Member">
+    <resultMap id="getMember" type="cn.codingtalk.tacomallentity.member.Member">
         <id property="id" column="id" />
-        <result property="username" column="username" />
+        <id property="username" column="username" />
     </resultMap>
 
 
-    <select id="getMember" resultMap="member">
+    <select id="getMember" resultMap="getMember">
         select *
         from member m
         <choose>

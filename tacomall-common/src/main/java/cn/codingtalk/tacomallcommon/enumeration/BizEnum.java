@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-16 16:32:58
- * @LastEditTime: 2020-06-16 16:43:12
+ * @LastEditTime: 2020-07-13 11:23:54
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springcloud\tacomall-common\src\main\java\cn\codingtalk\tacomallcommon\enumeration\BizEnum.java
+ * @FilePath: /tacomall-springboot/tacomall-common/src/main/java/cn/codingtalk/tacomallcommon/enumeration/BizEnum.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallcommon.enumeration;
@@ -13,7 +13,8 @@ public enum BizEnum {
     OK(2000, "正确响应"),
     FALSE(2001, "服务异常"),
     USER_NOT_EXIST(2100, "用户不存在"),
-    USER_NOT_LOGGED_IN(2101, "用户未登陆");
+    USER_NOT_LOGGED_IN(2101, "用户未登陆"),
+    PAGE_NOT_EXSIT(2200, "页面不存在");
 
     private int code;
     private String message;

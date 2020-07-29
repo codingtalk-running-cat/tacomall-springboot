@@ -22,7 +22,7 @@ public class AdminAuthRule {
 
     private String name;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 

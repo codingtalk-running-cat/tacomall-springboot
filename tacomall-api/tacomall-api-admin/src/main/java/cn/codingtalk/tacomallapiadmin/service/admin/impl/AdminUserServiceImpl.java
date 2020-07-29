@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-02 14:27:53
+ * @LastEditTime: 2020-07-10 15:57:25
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/cn/codingtalk/tacomallapiadmin/service/admin/impl/AdminUserServiceImpl.java
@@ -25,6 +25,11 @@ import cn.codingtalk.tacomallcommon.vo.ResponseVo;
 @Service
 public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser> implements AdminUserService {
 
+    /***
+     * @description: 用户登录
+     * @param {type}
+     * @return:
+     */
     @Override
     public ResponseVo<String> login(String username, String password) {
         ResponseVo<String> responseVo = new ResponseVo<>();
@@ -47,6 +52,11 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         return responseVo;
     }
 
+    /***
+     * @description: 用户注销
+     * @param {type}
+     * @return:
+     */
     @Override
     public ResponseVo<String> logout() {
         ResponseVo<String> responseVo = new ResponseVo<>();
@@ -55,11 +65,16 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         return responseVo;
     }
 
+    /***
+     * @description: 用户信息
+     * @param {type}
+     * @return:
+     */
     @Override
     public ResponseVo<AdminUser> info() {
         ResponseVo<AdminUser> responseVo = new ResponseVo<>();
         AdminUser user = (AdminUser) SecurityUtils.getSubject().getPrincipal();
-        
+
         responseVo.setData(baseMapper.getUserInfo(user.getId()));
         return responseVo;
     }

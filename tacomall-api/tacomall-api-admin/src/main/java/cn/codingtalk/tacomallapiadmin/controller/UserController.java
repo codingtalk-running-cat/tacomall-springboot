@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-02 10:40:55
+ * @LastEditTime: 2020-07-10 15:56:07
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/cn/codingtalk/tacomallapiadmin/controller/UserController.java
@@ -27,6 +27,11 @@ public class UserController {
     @Autowired
     private AdminUserService adminUserService;
 
+    /***
+     * @description: 用户登录
+     * @param {type}
+     * @return:
+     */
     @LoginLogger()
     @PostMapping("login")
     public ResponseVo<String> login(@RequestParam(value = "username") String username,
@@ -34,11 +39,21 @@ public class UserController {
         return adminUserService.login(username, passwd);
     }
 
+    /***
+     * @description: 用户注销
+     * @param {type}
+     * @return:
+     */
     @PostMapping("logout")
     public ResponseVo<String> logout() {
         return adminUserService.logout();
     }
 
+    /***
+     * @description: 用户信息
+     * @param {type}
+     * @return:
+     */
     @PostMapping("info")
     public ResponseVo<AdminUser> info() {
         return adminUserService.info();

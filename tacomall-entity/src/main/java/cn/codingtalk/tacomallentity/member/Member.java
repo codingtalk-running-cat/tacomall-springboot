@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-06-12 10:02:41
+ * @LastEditTime: 2020-07-24 10:37:01
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: \tacomall-springboot\tacomall-entity\src\main\java\cn\codingtalk\tacomallentity\member\Member.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/member/Member.java
  * @Just do what I think it is right
  */
 package cn.codingtalk.tacomallentity.member;
@@ -36,7 +36,7 @@ public class Member {
 
     private int growth;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 

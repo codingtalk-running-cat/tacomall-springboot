@@ -17,9 +17,9 @@ import com.baomidou.mybatisplus.annotation.*;
 @Data
 public class AdminDelivery {
     @TableId(value = "id", type = IdType.AUTO)
-    private int id; 
+    private int id;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 

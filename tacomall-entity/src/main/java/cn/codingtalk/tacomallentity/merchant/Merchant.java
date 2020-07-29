@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-02 09:14:25
- * @LastEditTime: 2020-07-02 09:15:21
+ * @LastEditTime: 2020-07-24 10:42:12
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/cn/codingtalk/tacomallentity/merchant/Merchant.java
@@ -24,7 +24,7 @@ public class Merchant {
 
     private String passwd;
 
-    private int is_delete;
+    private int isDelete;
 
     private Date createTime;
 
