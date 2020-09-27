@@ -1,0 +1,14 @@
+server:
+  port: 4001
+
+spring:
+  profiles:
+    active: @environment@
+
+logging:
+  level:
+    com.baomidou: debug
+
+mybatis-plus:
+  type-aliases-package: cn.codingtalk.tacomallmapper
+  mapper-locations: classpath:/mapper/*Mapper.xml

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.codingtalk.tacomallmapper.admin.AdminUserMapper">
+
+    <resultMap id="getUserInfo" type="cn.codingtalk.tacomallentity.admin.AdminUser">
+        <id property="id" column="id" />
+        <id property="username" column="username" />
+        <association property="role" column="auth_role_id" select="cn.codingtalk.tacomallmapper.admin.AdminAuthRoleMapper.getAuthRole"></association>
+        <collection property="rule" column="auth_role_id" select="cn.codingtalk.tacomallmapper.admin.AdminAuthRuleMapper.getAuthRuleByRoleId"></collection>
+    </resultMap>
+
+    <select id="getUserInfo" resultMap="getUserInfo">
+        SELECT *
+        FROM admin_user au
+        WHERE au.id = #{id}
+    </select>
+
+</mapper>

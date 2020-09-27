@@ -1,0 +1,4 @@
+jobs:
+  admin-address: http://127.0.0.1:7040
+  app-name: job-executor
+  app-port: 9999

@@ -1,0 +1,10 @@
+server:
+  port: 4003
+spring:
+  profiles:
+    active: @environment@
+logging:
+  level:
+    org.springframework.web: info
+    com.github.binarywang.demo.wx.miniapp: debug
+    cn.binarywang.wx.miniapp: debug

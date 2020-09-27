@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.codingtalk.tacomallmapper.admin.AdminAuthRuleMapper">
+
+    <resultMap id="getAuthRuleByRoleId" type="cn.codingtalk.tacomallentity.admin.AdminAuthRule">
+        <id property="id" column="id" />
+        <id property="name" column="name" />
+        <collection property="view" column="id" select="cn.codingtalk.tacomallmapper.admin.AdminAuthRuleViewMapper.getAuthRuleView"></collection>
+    </resultMap>
+
+    <select id="getAuthRuleByRoleId" resultMap="getAuthRuleByRoleId">
+        SELECT aar.id, aar.name
+        FROM admin_auth_role_mapping_rule aarmr
+        LEFT JOIN admin_auth_rule aar
+        ON aarmr.rule_id = aar.id
+        WHERE aarmr.id = #{id}
+    </select>
+
+</mapper>

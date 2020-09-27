@@ -1,0 +1,5 @@
+server:
+  port: 5001
+spring:
+  profiles:
+    active: @environment@

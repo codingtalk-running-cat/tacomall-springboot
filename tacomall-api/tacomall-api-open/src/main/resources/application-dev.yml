@@ -1,0 +1,8 @@
+oss:
+  endPoint: oss-cn-shenzhen.aliyuncs.com
+  accesskey: LTAI4Fickf14NieXeJSAQxcH
+  accessSecret:
+  bucket: codingtalk-img
+  expire: 3600
+  host: codingtalk-img.oss-cn-shenzhen.aliyuncs.com
+  callback:

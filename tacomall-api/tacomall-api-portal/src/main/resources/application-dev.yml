@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/tacomall?serverTimezone=Asia/Shanghai
+wx:
+  miniapp:
+    configs:
+      - appid: wx1492e33a9a6b64a3
+        secret: 2f84b1d33021937de1ead133fde06a4e
+        token:
+        aesKey:
+        msgDataFormat: JSON

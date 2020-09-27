@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.codingtalk.tacomallmapper.member.MemberMapper">
+
+    <resultMap id="getMember" type="cn.codingtalk.tacomallentity.member.Member">
+        <id property="id" column="id" />
+        <id property="username" column="username" />
+    </resultMap>
+
+
+    <select id="getMember" resultMap="getMember">
+        select *
+        from member m
+        <choose>
+            <when test="key=='id'">
+                where m.id = #{value}
+            </when>
+            <when test="key=='open_id'">
+                left join member_weixin_ma mwa
+                on m.id = mwa.member_id
+                where mwa.open_id = #{value}
+            </when>
+        </choose>
+    </select>
+
+</mapper>
