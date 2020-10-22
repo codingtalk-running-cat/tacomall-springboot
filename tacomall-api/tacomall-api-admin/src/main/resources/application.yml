@@ -10,5 +10,5 @@ logging:
     com.baomidou: debug
 
 mybatis-plus:
-  type-aliases-package: cn.codingtalk.tacomallmapper
+  type-aliases-package: store.tacomall.mapper
   mapper-locations: classpath:/mapper/*Mapper.xml

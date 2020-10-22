@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.codingtalk.tacomallmapper.cart.CartMapper">
+<mapper namespace="store.tacomall.mapper.cart.CartMapper">
 
-    <resultMap id="getCarts" type="cn.codingtalk.tacomallentity.cart.Cart">
-        <id property="id" column="id" />
-        <collection property="goodsItem" column="goods_item_id" select="cn.codingtalk.tacomallmapper.goods.GoodsItemMapper.getGoodsItemById"></collection>
+    <resultMap id="getCarts" type="store.tacomall.entity.cart.Cart">
+        <id property="id" column="id"></id>
+        <collection property="goodsItem" column="goods_item_id" select="store.tacomall.mapper.goods.GoodsItemMapper.getGoodsItemById"></collection>
     </resultMap>
 
     <select id="getCarts" resultMap="getCarts">

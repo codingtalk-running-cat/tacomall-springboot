@@ -9,6 +9,15 @@ logging:
   level:
     com.baomidou: debug
 
+wx:
+  miniapp:
+    configs:
+      - appid: wx1492e33a9a6b64a3
+        secret: 2f84b1d33021937de1ead133fde06a4e
+        token:
+        aesKey:
+        msgDataFormat: JSON
+
 mybatis-plus:
-  type-aliases-package: cn.codingtalk.tacomallmapper
+  type-aliases-package: store.tacomall.mapper
   mapper-locations: classpath:/mapper/*Mapper.xml

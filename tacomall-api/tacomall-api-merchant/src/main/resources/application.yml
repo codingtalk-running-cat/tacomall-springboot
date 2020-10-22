@@ -10,5 +10,10 @@ logging:
     com.baomidou: debug
 
 mybatis-plus:
-  type-aliases-package: cn.codingtalk.tacomallmapper
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  type-aliases-package: store.tacomall.mapper
   mapper-locations: classpath:/mapper/*Mapper.xml

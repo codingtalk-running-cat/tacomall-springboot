@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.codingtalk.tacomallmapper.goods.GoodsMapper">
+<mapper namespace="store.tacomall.mapper.goods.GoodsMapper">
 
-    <resultMap id="getGoods" type="cn.codingtalk.tacomallentity.goods.Goods">
-        <id property="id" column="id" />
-        <id property="name" column="name" />
-        <collection property="goodsItem" column="id" select="cn.codingtalk.tacomallmapper.goods.GoodsItemMapper.getGoodsItemByGoodsId"></collection>
+    <resultMap id="goods" type="store.tacomall.entity.goods.Goods">
+        <id property="id" column="id"></id>
+        <collection property="goodsItem" column="id" select="store.tacomall.mapper.goods.GoodsItemMapper.getGoodsItemByGoodsId"></collection>
     </resultMap>
 
-    <select id="getGoods" resultMap="getGoods">
+
+    <select id="getGoodsPage" resultMap="goods">
+        SELECT *
+        FROM goods
+    </select>
+
+    <select id="getGoods" resultMap="goods">
         SELECT *
         FROM goods
         WHERE id=#{id}
