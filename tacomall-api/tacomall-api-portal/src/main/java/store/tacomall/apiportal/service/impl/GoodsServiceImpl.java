@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 14:40:27
- * @LastEditTime: ,: 2020-10-21 20:39:19
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-24 14:29:50
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/GoodsServiceImpl.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/GoodsServiceImpl.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.service.impl;
@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Arrays;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -43,12 +44,17 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     };
 
     @Override
-    public ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, Map<String, Object> query) {
+    public ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json) {
         ResponseVo<List<Goods>> responseVo = new ResponseVo<>();
         Page<Goods> page = new Page<>(pageIndex, pageSize);
         LambdaQueryWrapper<Goods> q = new QueryWrapper<Goods>().lambda();
-        if (ObjectUtil.isNotEmpty(query.get("goodsCategoryId"))) {
+        if (ObjectUtil.isNotEmpty(json.getJSONObject("query"))
+                && ObjectUtil.isNotEmpty(json.getJSONObject("query").get("goodsCategoryId"))) {
             q.in(Goods::getGoodsCategoryId, Arrays.asList(6));
+        }
+        if (ObjectUtil.isNotEmpty(json.getJSONObject("query"))
+                && ObjectUtil.isNotEmpty(json.getJSONObject("query").get("keyword"))) {
+            q.like(Goods::getName, json.getJSONObject("query").get("keyword"));
         }
         IPage<Goods> result = this.baseMapper.getGoodsPage(page, q);
         responseVo.setData(result.getRecords());

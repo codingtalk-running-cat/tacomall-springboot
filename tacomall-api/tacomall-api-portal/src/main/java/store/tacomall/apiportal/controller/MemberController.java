@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-29 09:25:59
+ * @LastEditTime: 2020-10-24 14:56:30
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/MemberController.java
@@ -12,9 +12,11 @@ package store.tacomall.apiportal.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.annotations.*;
@@ -49,19 +51,13 @@ public class MemberController {
      * @return:
      */
     @ApiOperation(value = "小程序用户注册接口", notes = "小程序用户注册接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "iv", value = "iv", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "code", value = "code", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "appid", value = "appid", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "rawData", value = "rawData", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "signature", value = "signature", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "encryptedData", value = "encryptedData", required = true, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "appid", value = "appid", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "json", value = "json", required = true, paramType = "body") })
     @IgnoreAuth
     @PostMapping("wxMaLogin")
-    public ResponseVo<String> miniAppLogin(@RequestParam(value = "iv") String iv,
-            @RequestParam(value = "code") String code, @RequestParam(value = "appid") String appid,
-            @RequestParam(value = "rawData") String rawData, @RequestParam(value = "signature") String signature,
-            @RequestParam(value = "encryptedData") String encryptedData) throws Exception {
-        return this.memberService.wxMaLogin(iv, code, appid, rawData, signature, encryptedData);
+    public ResponseVo<String> miniAppLogin(@RequestParam(value = "appid") String appid, @RequestBody JSONObject json)
+            throws Exception {
+        return this.memberService.wxMaLogin(appid, json);
     }
 
     /***
@@ -84,7 +80,7 @@ public class MemberController {
      */
     @ApiOperation(value = "添加购物车", notes = "添加购物车接口", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "goodItems", value = "goodItems", required = true, paramType = "path"), })
+            @ApiImplicitParam(name = "goodItems", value = "goodItems", required = true, paramType = "query") })
     @RequireAuth
     @PostMapping("addCarts")
     public ResponseVo<String> addCart(@RequestParam(value = "goodItems") List<Map<String, Object>> goodItems) {

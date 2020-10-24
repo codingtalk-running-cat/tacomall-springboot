@@ -1,17 +1,17 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 14:32:41
- * @LastEditTime: ,: 2020-10-21 20:03:59
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-24 14:14:24
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/GoodsService.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/GoodsService.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.service;
 
 import java.util.List;
-import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import store.tacomall.common.vo.ResponseVo;
@@ -30,5 +30,5 @@ public interface GoodsService extends IService<Goods> {
      * @param {type}
      * @return:
      */
-    ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, Map<String, Object> query);
+    ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json);
 }

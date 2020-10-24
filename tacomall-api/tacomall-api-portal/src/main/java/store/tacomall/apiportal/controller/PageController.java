@@ -31,7 +31,7 @@ public class PageController {
     private PageFactory PageFactory;
 
     @ApiOperation(value = "获取页面信息", notes = "获取页面信息接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "page", value = "page", required = true, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "page", value = "page", required = true, paramType = "query") })
     @PostMapping("info")
     public ResponseVo<Map<String, Object>> info(@RequestParam(value = "page") String page) throws Exception {
         return PageFactory.getStrategy(page).buildPage();

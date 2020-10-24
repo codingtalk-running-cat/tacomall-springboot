@@ -39,8 +39,8 @@ public class OrderController {
      */
     @ApiOperation(value = "商户订单分页", notes = "商户订单分页接口", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "path") })
+            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "query") })
     @PostMapping("page")
     public ResponseVo<List<Order>> goodsPage(@RequestParam(value = "pageIndex") int pageIndex,
             @RequestParam(value = "pageSize") int pageSize) {
@@ -53,7 +53,7 @@ public class OrderController {
      * @return:
      */
     @ApiOperation(value = "商户订单详情", notes = "商户订单详情接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "id", required = true, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "id", required = true, paramType = "query") })
     @PostMapping("info")
     public ResponseVo<Order> info(@RequestParam(value = "id") int id) {
         return orderService.info(id);

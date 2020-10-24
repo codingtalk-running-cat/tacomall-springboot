@@ -30,7 +30,7 @@ public class OssController {
     private OssService ossService;
 
     @ApiOperation(value = "获取鉴权配置", notes = "获取鉴权配置接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "dir", value = "dir", required = false, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "dir", value = "dir", required = false, paramType = "query") })
     @PostMapping("authorize")
     public ResponseVo<Map<String, Object>> authorize(@RequestParam(value = "dir", defaultValue = "/") String dir) {
         return ossService.authorize(dir);

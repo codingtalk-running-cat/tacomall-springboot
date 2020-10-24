@@ -35,8 +35,8 @@ public class UserController {
      * @return:
      */
     @ApiOperation(value = "商家用户登录", notes = "商家用户登录接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "username", value = "username", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "passwd", value = "passwd", required = true, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "username", value = "username", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "passwd", value = "passwd", required = true, paramType = "query") })
     @LoginLogger()
     @PostMapping("login")
     public ResponseVo<String> login(@RequestParam(value = "username") String username,

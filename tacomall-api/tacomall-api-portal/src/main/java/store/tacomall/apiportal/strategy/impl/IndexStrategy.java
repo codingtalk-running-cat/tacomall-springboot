@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,11 +44,13 @@ public class IndexStrategy implements Strategy {
         List<Map<String, Object>> floor = new ArrayList<>();
         goodsCategoryService.getIndexCategoryGoodsCategories().getData().stream().forEach((GoodsCategory gc) -> {
             Map<String, Object> t = new HashMap<>();
-            Map<String, Object> q = new HashMap<>();
+            JSONObject b = new JSONObject();
+            JSONObject bQuery = new JSONObject();
             t.put("id", gc.getId());
             t.put("name", gc.getName());
-            q.put("goodsCategoryId", gc.getId());
-            t.put("goods", goodsService.getGoodsPage(1, 6, q).getData());
+            bQuery.put("goodsCategoryId", gc.getId());
+            b.put("query", bQuery);
+            t.put("goods", goodsService.getGoodsPage(1, 6, b).getData());
             floor.add(t);
         });
         map.put("floor", floor);

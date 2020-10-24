@@ -7,7 +7,7 @@ spring:
 
 logging:
   level:
-    com.baomidou: debug
+    store.tacomall.mapper: debug
 
 wx:
   miniapp:

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-29 09:22:53
+ * @LastEditTime: 2020-10-24 14:56:20
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/MemberService.java
@@ -9,6 +9,7 @@
  */
 package store.tacomall.apiportal.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import store.tacomall.common.vo.ResponseVo;
@@ -21,8 +22,7 @@ public interface MemberService extends IService<Member> {
      * @param {type}
      * @return:
      */
-    ResponseVo<String> wxMaLogin(String iv, String code, String appid, String rawData, String signature,
-            String encryptedData) throws Exception;
+    ResponseVo<String> wxMaLogin(String appid, JSONObject json) throws Exception;
 
     /***
      * @description: 用户信息

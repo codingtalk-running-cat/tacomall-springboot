@@ -41,8 +41,8 @@ public class GoodsController {
      */
     @ApiOperation(value = "商家商品分页", notes = "商家商品分页接口", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "path"),
-            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "path") })
+            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "query") })
     @PostMapping("page")
     public ResponseVo<List<Goods>> goodsPage(@RequestParam(value = "pageIndex") int pageIndex,
             @RequestParam(value = "pageSize") int pageSize) {
@@ -55,7 +55,7 @@ public class GoodsController {
      * @return:
      */
     @ApiOperation(value = "商户商品详情", notes = "商户商品详情接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "id", required = true, paramType = "path") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "id", required = true, paramType = "query") })
     @PostMapping("info")
     public ResponseVo<Goods> info(@RequestParam(value = "id") int id) {
         return goodsService.info(id);

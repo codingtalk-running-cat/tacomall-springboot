@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: ,: 2020-10-21 15:20:07
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-24 14:58:32
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/MemberServiceImpl.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/MemberServiceImpl.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.service.impl;
@@ -20,6 +20,7 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +73,13 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
      * @return:
      */
     @Override
-    public ResponseVo<String> wxMaLogin(String iv, String code, String appid, String rawData, String signature,
-            String encryptedData) throws Exception {
+    public ResponseVo<String> wxMaLogin(String appid, JSONObject json) throws Exception {
         ResponseVo<String> responseVo = new ResponseVo<>();
+        String iv = json.getString("iv");
+        String code = json.getString("code");
+        String rawData = json.getString("rawData");
+        String signature = json.getString("signature");
+        String encryptedData = json.getString("encryptedData");
         responseVo.setStatus(false);
         responseVo.setCode(BizEnum.FALSE.getCode());
         String token = "";
