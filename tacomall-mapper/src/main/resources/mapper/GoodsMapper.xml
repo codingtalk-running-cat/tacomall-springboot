@@ -7,16 +7,15 @@
         <collection property="goodsItem" column="id" select="store.tacomall.mapper.goods.GoodsItemMapper.getGoodsItemByGoodsId"></collection>
     </resultMap>
 
-
-    <select id="getGoodsPage" resultMap="goods">
+    <select id="getGoods" resultMap="goods">
         SELECT *
         FROM goods
     </select>
 
-    <select id="getGoods" resultMap="goods">
+
+    <select id="getGoodsPage" resultMap="goods">
         SELECT *
         FROM goods
-        WHERE id=#{id}
     </select>
 
 

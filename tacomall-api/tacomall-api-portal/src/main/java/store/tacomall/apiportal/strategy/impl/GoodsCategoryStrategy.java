@@ -30,7 +30,7 @@ public class GoodsCategoryStrategy implements Strategy {
     public ResponseVo<Map<String, Object>> buildPage() {
         ResponseVo<Map<String, Object>> responseVo = new ResponseVo<>();
         Map<String, Object> map = new HashMap<>();
-        map.put("goodsCategory", this.goodsCategoryService.getGoodsCategories().getData());
+        map.put("goodsCategory", goodsCategoryService.getGoodsCategories().getData());
         responseVo.setData(map);
         return responseVo;
     }

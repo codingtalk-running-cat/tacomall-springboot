@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 11:06:56
- * @LastEditTime: ,: 2020-10-21 19:53:10
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-25 12:07:39
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/GoodsStrategy.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/GoodsStrategy.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.strategy.impl;
@@ -29,7 +29,7 @@ public class GoodsStrategy implements Strategy {
     public ResponseVo<Map<String, Object>> buildPage() {
         ResponseVo<Map<String, Object>> responseVo = new ResponseVo<>();
         Map<String, Object> map = new HashMap<>();
-        map.put("goods", this.goodsService.getGoods(1));
+        map.put("goods", goodsService.getGoods(1).getData());
         responseVo.setData(map);
         return responseVo;
     }
