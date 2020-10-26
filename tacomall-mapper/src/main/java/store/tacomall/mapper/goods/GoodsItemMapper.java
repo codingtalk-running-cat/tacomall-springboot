@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-16 17:31:01
- * @LastEditTime: 2020-07-24 11:03:40
+ * @LastEditTime: 2020-10-26 15:43:03
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-mapper/src/main/java/store/tacomall/mapper/goods/GoodsItemMapper.java
@@ -22,7 +22,7 @@ import store.tacomall.entity.goods.GoodsItem;
 @Repository
 public interface GoodsItemMapper extends BaseMapper<GoodsItem> {
 
-    @Select("SELECT * FROM goods_item WHERE goods_id = #{id}")
+    @Select("SELECT * FROM goods_item WHERE id = #{id}")
     List<GoodsItem> getGoodsItemById(@Param("id") int id);
 
     @Select("SELECT * FROM goods_item WHERE goods_id = #{goodsId}")

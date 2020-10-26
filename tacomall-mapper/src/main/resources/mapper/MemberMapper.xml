@@ -11,8 +11,8 @@
 
 
     <select id="getMember" resultMap="member">
-        select *
-        from member
+        SELECT *
+        FROM member
         ${ew.customSqlSegment}
     </select>
 

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-10 17:00:09
- * @LastEditTime: 2020-10-24 14:23:51
+ * @LastEditTime: 2020-10-26 18:43:46
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/SearchStrategy.java
@@ -29,7 +29,7 @@ public class SearchStrategy implements Strategy {
     private GoodsService goodsService;
 
     @Override
-    public ResponseVo<Map<String, Object>> buildPage() {
+    public ResponseVo<Map<String, Object>> buildPage(JSONObject json) {
         ResponseVo<Map<String, Object>> responseVo = new ResponseVo<>();
         Map<String, Object> map = new HashMap<>();
         List<String> hot = new ArrayList<>();

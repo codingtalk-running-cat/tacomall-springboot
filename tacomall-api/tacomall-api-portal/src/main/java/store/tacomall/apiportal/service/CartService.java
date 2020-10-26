@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-29 09:15:01
+ * @LastEditTime: 2020-10-26 19:19:21
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/CartService.java
@@ -24,13 +24,13 @@ public interface CartService extends IService<Cart> {
      * @param {type}
      * @return:
      */
-    ResponseVo<String> addCarts(List<Map<String, Object>> goodItems);
+    ResponseVo<String> addCarts(int goodsItemId, int quantity);
 
     /***
      * @description: 获取用户购物车
      * @param {type}
      * @return:
      */
-    ResponseVo<List<Cart>> getCarts();
+    ResponseVo<List<Map<String, Object>>> getCart();
 
 }

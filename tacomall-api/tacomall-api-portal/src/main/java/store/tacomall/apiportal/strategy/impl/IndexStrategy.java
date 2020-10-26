@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-10 17:00:09
- * @LastEditTime: ,: 2020-10-21 20:36:46
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-26 18:42:26
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/IndexStrategy.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/IndexStrategy.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.strategy.impl;
@@ -38,7 +38,7 @@ public class IndexStrategy implements Strategy {
     private GoodsService goodsService;
 
     @Override
-    public ResponseVo<Map<String, Object>> buildPage() {
+    public ResponseVo<Map<String, Object>> buildPage(JSONObject json) {
         ResponseVo<Map<String, Object>> responseVo = new ResponseVo<>();
         Map<String, Object> map = new HashMap<>();
         List<Map<String, Object>> floor = new ArrayList<>();

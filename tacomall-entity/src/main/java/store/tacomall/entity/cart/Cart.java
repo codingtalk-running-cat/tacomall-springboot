@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 14:45:05
- * @LastEditTime: 2020-07-24 11:01:01
+ * @LastEditTime: 2020-10-26 15:44:25
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/cart/Cart.java
@@ -15,6 +15,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
 
 import store.tacomall.entity.goods.GoodsItem;
+import store.tacomall.entity.merchant.Merchant;
 
 @Data
 public class Cart {
@@ -25,6 +26,8 @@ public class Cart {
 
     private int goodsItemId;
 
+    private int quantity;
+
     private int isDelete;
 
     private Date createTime;
@@ -32,6 +35,9 @@ public class Cart {
     private Date updateTime;
 
     private Date deleteTime;
+
+    @TableField(exist = false)
+    private Merchant merchant;
 
     @TableField(exist = false)
     private GoodsItem goodsItem;

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-24 14:56:30
+ * @LastEditTime: 2020-10-26 19:19:27
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/MemberController.java
@@ -23,7 +23,6 @@ import io.swagger.annotations.*;
 
 import store.tacomall.apiportal.annotation.IgnoreAuth;
 import store.tacomall.apiportal.annotation.RequireAuth;
-import store.tacomall.entity.cart.Cart;
 import store.tacomall.entity.member.Member;
 import store.tacomall.entity.order.Order;
 import store.tacomall.common.vo.ResponseVo;
@@ -51,8 +50,8 @@ public class MemberController {
      * @return:
      */
     @ApiOperation(value = "小程序用户注册接口", notes = "小程序用户注册接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "appid", value = "appid", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "json", value = "json", required = true, paramType = "body") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "appid", value = "微信小程序appid", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "json", value = "微信授权回调数据", required = true, paramType = "body") })
     @IgnoreAuth
     @PostMapping("wxMaLogin")
     public ResponseVo<String> miniAppLogin(@RequestParam(value = "appid") String appid, @RequestBody JSONObject json)
@@ -79,12 +78,13 @@ public class MemberController {
      * @return:
      */
     @ApiOperation(value = "添加购物车", notes = "添加购物车接口", httpMethod = "POST")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "goodItems", value = "goodItems", required = true, paramType = "query") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "goodsItemId", value = "商品ID", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "quantity", value = "商品数量", required = true, paramType = "query") })
     @RequireAuth
-    @PostMapping("addCarts")
-    public ResponseVo<String> addCart(@RequestParam(value = "goodItems") List<Map<String, Object>> goodItems) {
-        return this.cartService.addCarts(goodItems);
+    @PostMapping("addCart")
+    public ResponseVo<String> addCart(@RequestParam(value = "goodsItemId") int goodsItemId,
+            @RequestParam(value = "quantity") int quantity) {
+        return this.cartService.addCarts(goodsItemId, quantity);
     }
 
     /***
@@ -95,9 +95,9 @@ public class MemberController {
     @ApiOperation(value = "用户购物车", notes = "用户购物车接口", httpMethod = "POST")
     @ApiImplicitParams({})
     @RequireAuth
-    @PostMapping("getCarts")
-    public ResponseVo<List<Cart>> getCarts() {
-        return this.cartService.getCarts();
+    @PostMapping("getCart")
+    public ResponseVo<List<Map<String, Object>>> getCart() {
+        return this.cartService.getCart();
     }
 
     /***

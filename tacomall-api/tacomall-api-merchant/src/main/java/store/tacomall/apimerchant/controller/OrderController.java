@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:10:40
- * @LastEditTime: ,: 2020-10-20 14:43:18
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-26 17:51:27
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/OrderController.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/OrderController.java
  * @微信:  13680065830
  * @邮箱:  3189482282@qq.com
  * @oops: Just do what I think it is right
@@ -38,9 +38,8 @@ public class OrderController {
      * @return:
      */
     @ApiOperation(value = "商户订单分页", notes = "商户订单分页接口", httpMethod = "POST")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "query") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "pageIndex", value = "分页码数", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "分页数量", required = true, paramType = "query") })
     @PostMapping("page")
     public ResponseVo<List<Order>> goodsPage(@RequestParam(value = "pageIndex") int pageIndex,
             @RequestParam(value = "pageSize") int pageSize) {
@@ -53,7 +52,7 @@ public class OrderController {
      * @return:
      */
     @ApiOperation(value = "商户订单详情", notes = "商户订单详情接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "id", required = true, paramType = "query") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "订单ID", required = true, paramType = "query") })
     @PostMapping("info")
     public ResponseVo<Order> info(@RequestParam(value = "id") int id) {
         return orderService.info(id);

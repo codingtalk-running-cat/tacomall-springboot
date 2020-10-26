@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-19 18:35:29
+ * @LastEditTime: 2020-10-26 17:56:56
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-open/src/main/java/store/tacomall/apiopen/controller/OssController.java
@@ -30,7 +30,7 @@ public class OssController {
     private OssService ossService;
 
     @ApiOperation(value = "获取鉴权配置", notes = "获取鉴权配置接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "dir", value = "dir", required = false, paramType = "query") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "dir", value = "存储路径", required = false, paramType = "query") })
     @PostMapping("authorize")
     public ResponseVo<Map<String, Object>> authorize(@RequestParam(value = "dir", defaultValue = "/") String dir) {
         return ossService.authorize(dir);

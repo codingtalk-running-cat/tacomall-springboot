@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-19 16:37:30
+ * @LastEditTime: 2020-10-26 17:56:31
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/store/tacomall/apiadmin/controller/UserController.java
@@ -35,8 +35,8 @@ public class UserController {
      * @return:
      */
     @ApiOperation(value = "平台用户登录", notes = "商家用户登录接口", httpMethod = "POST")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "username", value = "username", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "passwd", value = "passwd", required = true, paramType = "query") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "username", value = "平台账号", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "passwd", value = "平台密码", required = true, paramType = "query") })
     @LoginLogger()
     @PostMapping("login")
     public ResponseVo<String> login(@RequestParam(value = "username") String username,

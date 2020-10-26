@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-24 14:58:32
+ * @LastEditTime: 2020-10-26 19:09:17
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/MemberServiceImpl.java
@@ -81,7 +81,6 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         String signature = json.getString("signature");
         String encryptedData = json.getString("encryptedData");
         responseVo.setStatus(false);
-        responseVo.setCode(BizEnum.FALSE.getCode());
         String token = "";
 
         final WxMaService wxService = WxMaConfig.getMaService(appid);
@@ -141,7 +140,6 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         JwtUtil jwtUtil = new JwtUtil();
         jwtUtil.setISSUER("api-portal");
         token = jwtUtil.create(claims);
-
         responseVo.setStatus(true);
         responseVo.setData(token);
         return responseVo;

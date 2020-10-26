@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-24 14:13:47
+ * @LastEditTime: 2020-10-26 18:06:17
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/GoodsController.java
@@ -40,10 +40,9 @@ public class GoodsController {
      * @return:
      */
     @ApiOperation(value = "产品分页", notes = "产品分页接口", httpMethod = "POST")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageIndex", value = "pageIndex", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "pageSize", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "json", value = "json", required = true, paramType = "body") })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "pageIndex", value = "分页码数", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "分页数量", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "json", value = "查询条件", required = true, paramType = "body") })
     @IgnoreAuth
     @PostMapping("getGoodsPage")
     public ResponseVo<List<Goods>> getGoodsPage(@RequestParam(value = "pageIndex") int pageIndex,

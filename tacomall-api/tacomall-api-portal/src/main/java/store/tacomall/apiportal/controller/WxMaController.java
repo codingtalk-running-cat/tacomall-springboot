@@ -1,31 +1,26 @@
+/***
+ * @Author: 码上talk|RC
+ * @Date: 2020-06-11 20:45:33
+ * @LastEditTime: 2020-10-26 17:50:09
+ * @LastEditors: 码上talk|RC
+ * @Description: 
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/WxMaController.java
+ * @微信:  13680065830
+ * @邮箱:  3189482282@qq.com
+ * @oops: Just do what I think it is right
+ */
 package store.tacomall.apiportal.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
-import com.google.common.io.Files;
-import com.google.common.collect.Lists;
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaMessage;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
-import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
-import me.chanjar.weixin.common.error.WxErrorException;
 
 import store.tacomall.apiportal.config.WxMaConfig;
 

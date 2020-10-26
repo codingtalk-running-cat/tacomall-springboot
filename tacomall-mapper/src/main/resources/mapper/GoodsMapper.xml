@@ -10,12 +10,14 @@
     <select id="getGoods" resultMap="goods">
         SELECT *
         FROM goods
+        ${ew.customSqlSegment}
     </select>
 
 
     <select id="getGoodsPage" resultMap="goods">
         SELECT *
         FROM goods
+        ${ew.customSqlSegment}
     </select>
 
 
