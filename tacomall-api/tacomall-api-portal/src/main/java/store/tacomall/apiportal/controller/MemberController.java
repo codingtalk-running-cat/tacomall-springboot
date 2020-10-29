@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-26 19:19:27
+ * @LastEditTime: 2020-10-27 15:36:16
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/MemberController.java
@@ -98,6 +98,19 @@ public class MemberController {
     @PostMapping("getCart")
     public ResponseVo<List<Map<String, Object>>> getCart() {
         return this.cartService.getCart();
+    }
+
+    /***
+     * @description:
+     * @param {type} 检查用户订单
+     * @return:
+     */
+    @ApiOperation(value = "添加用户订单", notes = "添加用户订单接口", httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequireAuth
+    @PostMapping("checkOrder")
+    public ResponseVo<Order> checkOrder() {
+        return this.orderService.checkOrder();
     }
 
     /***

@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: ,: 2020-10-21 20:13:32
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-28 19:12:49
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/Goods.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/Goods.java
  * @Just do what I think it is right
  */
 package store.tacomall.entity.goods;
@@ -25,6 +25,8 @@ public class Goods {
     private int goodsCategoryId;
 
     private String name;
+
+    private String attrJson;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private int isDelete;

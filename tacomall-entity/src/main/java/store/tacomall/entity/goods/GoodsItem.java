@@ -1,15 +1,16 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-11 20:56:34
- * @LastEditTime: ,: 2020-10-20 16:32:28
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-29 18:23:02
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/GoodsItem.java
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/GoodsItem.java
  * @Just do what I think it is right
  */
 package store.tacomall.entity.goods;
 
 import java.util.Date;
+import java.math.BigDecimal;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
@@ -22,6 +23,8 @@ public class GoodsItem {
     private int goodsId;
 
     private String name;
+
+    private BigDecimal amount;
 
     private int isDelete;
 

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-26 20:07:38
+ * @LastEditTime: 2020-10-29 17:52:22
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/CartServiceImpl.java
@@ -53,29 +53,32 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
      * @return:
      */
     @Override
+    @SuppressWarnings("unchecked")
     public ResponseVo<List<Map<String, Object>>> getCart() {
         ResponseVo<List<Map<String, Object>>> responseVo = new ResponseVo<>();
         List<Map<String, Object>> result = new ArrayList<>();
         this.baseMapper.getCarts(
                 new QueryWrapper<Cart>().lambda().eq(Cart::getMemberId, RequestUtil.getLoginUser().getInteger("id")))
                 .stream().forEach((Cart cart) -> {
+                    Map<String, Object> listItem = new HashMap<>();
+                    listItem.put("id", cart.getId());
+                    listItem.put("quantity", cart.getQuantity());
+                    listItem.put("goodsItem", cart.getGoodsItem());
                     for (int i = 0; i < result.size(); i++) {
                         Merchant merchant = (Merchant) result.get(i).get("merchant");
                         if (cart.getMerchant().getId() == merchant.getId()) {
-                            List<GoodsItem> goodsItems = (List<GoodsItem>) result.get(i).get("goodsItems");
-                            goodsItems.add(cart.getGoodsItem());
+                            List<Map<String, Object>> list = (List<Map<String, Object>>) result.get(i).get("list");
+                            list.add(listItem);
                             return;
                         }
                     }
                     Map<String, Object> map = new HashMap<>();
-                    List<GoodsItem> list = new ArrayList<>();
-                    list.add(cart.getGoodsItem());
+                    List<Map<String, Object>> list = new ArrayList<>();
+                    list.add(listItem);
                     map.put("merchant", cart.getMerchant());
-                    map.put("goodsItems", list);
+                    map.put("list", list);
                     result.add(map);
                 });
-        ;
-
         responseVo.setData(result);
         return responseVo;
     }

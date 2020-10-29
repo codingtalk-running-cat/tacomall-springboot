@@ -30,7 +30,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.NumberUtil;
 
-import store.tacomall.common.enumeration.BizEnum;
 import store.tacomall.common.util.ExceptionUtil;
 import store.tacomall.common.util.JwtUtil;
 import store.tacomall.common.util.RequestUtil;

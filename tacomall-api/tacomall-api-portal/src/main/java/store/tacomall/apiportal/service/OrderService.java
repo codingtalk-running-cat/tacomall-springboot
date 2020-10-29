@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-07-29 09:26:55
+ * @LastEditTime: 2020-10-27 15:36:50
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/OrderService.java
@@ -24,6 +24,13 @@ public interface OrderService extends IService<Order> {
      * @return:
      */
     ResponseVo<Order> addOrder();
+
+    /***
+     * @description: 检查用户订单
+     * @param {type}
+     * @return:
+     */
+    ResponseVo<Order> checkOrder();
 
     /***
      * @description: 获取用户订单分页
