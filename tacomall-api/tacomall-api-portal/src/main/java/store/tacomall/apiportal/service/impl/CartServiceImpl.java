@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-29 17:52:22
+ * @LastEditTime: 2020-10-30 15:59:32
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/CartServiceImpl.java
@@ -12,18 +12,21 @@ package store.tacomall.apiportal.service.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import cn.hutool.core.util.ObjectUtil;
+
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import store.tacomall.common.util.RequestUtil;
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.cart.Cart;
-import store.tacomall.entity.goods.GoodsItem;
-import store.tacomall.entity.merchant.Merchant;
 import store.tacomall.mapper.cart.CartMapper;
 import store.tacomall.apiportal.service.CartService;
 
@@ -36,7 +39,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
      * @return:
      */
     @Override
-    public ResponseVo<String> addCarts(int goodsItemId, int quantity) {
+    public ResponseVo<String> addCart(int goodsItemId, int quantity) {
         ResponseVo<String> responseVo = new ResponseVo<>();
         Cart cart = new Cart();
         cart.setMemberId(RequestUtil.getLoginUser().getIntValue("id"));
@@ -48,38 +51,34 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     }
 
     /***
+     * @description: 删除购物车
+     * @param {type}
+     * @return:
+     */
+    @Override
+    public ResponseVo<Boolean> deleteCart(String cartIds) {
+        ResponseVo<Boolean> responseVo = new ResponseVo<>();
+        this.baseMapper.delete(
+                new QueryWrapper<Cart>().lambda().eq(Cart::getMemberId, RequestUtil.getLoginUser().getInteger("id"))
+                        .in(Cart::getId, Arrays.asList(cartIds.split(","))));
+        return responseVo;
+    }
+
+    /***
      * @description: 获取用户购物车
      * @param {type}
      * @return:
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public ResponseVo<List<Map<String, Object>>> getCart() {
-        ResponseVo<List<Map<String, Object>>> responseVo = new ResponseVo<>();
-        List<Map<String, Object>> result = new ArrayList<>();
-        this.baseMapper.getCarts(
-                new QueryWrapper<Cart>().lambda().eq(Cart::getMemberId, RequestUtil.getLoginUser().getInteger("id")))
-                .stream().forEach((Cart cart) -> {
-                    Map<String, Object> listItem = new HashMap<>();
-                    listItem.put("id", cart.getId());
-                    listItem.put("quantity", cart.getQuantity());
-                    listItem.put("goodsItem", cart.getGoodsItem());
-                    for (int i = 0; i < result.size(); i++) {
-                        Merchant merchant = (Merchant) result.get(i).get("merchant");
-                        if (cart.getMerchant().getId() == merchant.getId()) {
-                            List<Map<String, Object>> list = (List<Map<String, Object>>) result.get(i).get("list");
-                            list.add(listItem);
-                            return;
-                        }
-                    }
-                    Map<String, Object> map = new HashMap<>();
-                    List<Map<String, Object>> list = new ArrayList<>();
-                    list.add(listItem);
-                    map.put("merchant", cart.getMerchant());
-                    map.put("list", list);
-                    result.add(map);
-                });
-        responseVo.setData(result);
+    public ResponseVo<List<Cart>> getCart(JSONObject json) {
+        ResponseVo<List<Cart>> responseVo = new ResponseVo<>();
+        LambdaQueryWrapper<Cart> q = new QueryWrapper<Cart>().lambda();
+        q.eq(Cart::getMemberId, RequestUtil.getLoginUser().getInteger("id"));
+        if (ObjectUtil.isNotEmpty(json.getString("ids"))) {
+            q.in(Cart::getId, Arrays.asList(json.getString("ids").split(",")));
+        }
+        q.eq(Cart::getIsDelete, 0);
+        responseVo.setData(this.baseMapper.getCarts(q));
         return responseVo;
     }
 

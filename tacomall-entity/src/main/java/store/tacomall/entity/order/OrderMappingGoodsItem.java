@@ -1,11 +1,13 @@
 /***
  * @Author: 码上talk|RC
- * @Date: 2020-07-13 14:45:39
- * @LastEditTime: 2020-10-31 10:05:23
+ * @Date: 2020-10-30 18:05:13
+ * @LastEditTime: 2020-10-30 18:07:28
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/order/Order.java
- * @Just do what I think it is right
+ * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/order/OrderMappingGoodsItem.java
+ * @微信:  13680065830
+ * @邮箱:  3189482282@qq.com
+ * @oops: Just do what I think it is right
  */
 package store.tacomall.entity.order;
 
@@ -16,14 +18,17 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
 
 @Data
-@TableName(value = "`order`")
-public class Order {
+public class OrderMappingGoodsItem {
     @TableId(value = "id", type = IdType.AUTO)
     private int id;
 
-    private int memberId;
+    private int orderId;
 
-    private BigDecimal totalAmount;
+    private int goodsItemId;
+
+    private BigDecimal amount;
+
+    private int quantity;
 
     private int isDelete;
 

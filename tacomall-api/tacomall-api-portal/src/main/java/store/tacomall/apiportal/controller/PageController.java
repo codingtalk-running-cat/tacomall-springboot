@@ -2,7 +2,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 10:51:51
- * @LastEditTime: 2020-10-26 18:41:39
+ * @LastEditTime: 2020-10-30 15:33:50
  * @LastEditors: 码上talk|RC
  * @Description: package store.tacomall.apiportal.controller;
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/PageController.java
@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.annotations.*;
 
 import store.tacomall.common.vo.ResponseVo;
+import store.tacomall.apiportal.annotation.LoginUser;
 import store.tacomall.apiportal.factory.PageFactory;
 
 @Api(tags = "用户模块")
@@ -36,8 +37,9 @@ public class PageController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "page", value = "页面ID", required = true, paramType = "query"),
             @ApiImplicitParam(name = "json", value = "页面参数", required = true, paramType = "body") })
     @PostMapping("info")
-    public ResponseVo<Map<String, Object>> info(@RequestParam(value = "page") String page, @RequestBody JSONObject json)
-            throws Exception {
+    @LoginUser(required = false)
+    public ResponseVo<Map<String, Object>> info(@RequestParam(value = "page") String page,
+            @RequestBody JSONObject json) {
         return PageFactory.getStrategy(page).buildPage(json);
     }
 }

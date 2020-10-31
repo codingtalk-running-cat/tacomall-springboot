@@ -1,10 +1,10 @@
 /***
  * @Author: ,: 码上talk|RC
  * @Date: ,: 2020-10-19 16:12:03
- * @LastEditTime: ,: 2020-10-20 14:39:59
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-10-31 10:33:57
+ * @LastEditors: 码上talk|RC
  * @Description: ,: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/order/impl/OrderServiceImpl.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/order/impl/OrderServiceImpl.java
  * @微信: ,:  13680065830
  * @邮箱: ,:  3189482282@qq.com
  * @oops: ,: Just do what I think it is right
@@ -35,7 +35,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public ResponseVo<List<Order>> getOrderPage(int pageIndex, int pageSize) {
         ResponseVo<List<Order>> responseVo = new ResponseVo<>();
         Page<Order> page = new Page<>(pageIndex, pageSize);
-        IPage<Order> result = this.baseMapper.getOrderPage(page);
+        IPage<Order> result = this.baseMapper.getOrderPage(page, null);
         responseVo.setData(result.getRecords());
         return responseVo;
     }
@@ -48,7 +48,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Override
     public ResponseVo<Order> info(int id) {
         ResponseVo<Order> responseVo = new ResponseVo<>();
-        responseVo.setData(this.baseMapper.getOrder(id));
+        responseVo.setData(this.baseMapper.getOrder(null));
         return responseVo;
     }
 

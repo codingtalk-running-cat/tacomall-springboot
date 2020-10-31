@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-26 18:06:17
+ * @LastEditTime: 2020-10-30 15:40:22
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/GoodsController.java
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.annotations.*;
 
-import store.tacomall.apiportal.annotation.IgnoreAuth;
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.goods.Goods;
 import store.tacomall.apiportal.service.GoodsService;
@@ -43,7 +42,6 @@ public class GoodsController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "pageIndex", value = "分页码数", required = true, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "分页数量", required = true, paramType = "query"),
             @ApiImplicitParam(name = "json", value = "查询条件", required = true, paramType = "body") })
-    @IgnoreAuth
     @PostMapping("getGoodsPage")
     public ResponseVo<List<Goods>> getGoodsPage(@RequestParam(value = "pageIndex") int pageIndex,
             @RequestParam(value = "pageSize") int pageSize, @RequestBody JSONObject json) {

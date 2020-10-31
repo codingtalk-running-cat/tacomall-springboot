@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-10 16:58:58
- * @LastEditTime: 2020-10-19 17:44:39
+ * @LastEditTime: 2020-10-30 15:10:24
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/factory/PageFactory.java
@@ -26,7 +26,7 @@ public class PageFactory {
     @Autowired
     Map<String, Strategy> strategys = new ConcurrentHashMap<>(3);
 
-    public Strategy getStrategy(String id) throws Exception {
+    public Strategy getStrategy(String id) {
         Strategy strategy = strategys.get(id);
         if (ObjectUtil.isNull(strategy)) {
             ExceptionUtil.throwClientException(BizEnum.PAGE_NOT_EXSIT.getMessage());
