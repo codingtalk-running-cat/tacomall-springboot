@@ -3296,6 +3296,12 @@
               "autoIncrement": true
             },
             {
+              "name": "name",
+              "type": "DefaultString",
+              "remark": "商户名称",
+              "chnname": ""
+            },
+            {
               "name": "is_delete",
               "type": "Integer",
               "remark": "删除标记",
@@ -3380,6 +3386,12 @@
               "pk": true,
               "notNull": true,
               "autoIncrement": true
+            },
+            {
+              "name": "merchant_id",
+              "type": "Integer",
+              "remark": "商户账号",
+              "chnname": ""
             },
             {
               "name": "username",
@@ -5708,13 +5720,13 @@
             },
             {
               "name": "start_time",
-              "type": "DefaultString",
+              "type": "DateTime",
               "remark": "开启时间",
               "chnname": ""
             },
             {
               "name": "end_tme",
-              "type": "DefaultString",
+              "type": "DateTime",
               "remark": "结束时间",
               "chnname": ""
             },
@@ -5794,7 +5806,7 @@
           "chnname": "秒杀主表"
         },
         {
-          "title": "seckill_goods_apply",
+          "title": "seckill_goods_item_apply",
           "fields": [
             {
               "name": "id",
@@ -5818,9 +5830,21 @@
               "chnname": ""
             },
             {
-              "name": "goods_id",
+              "name": "goods_item_id",
               "type": "Integer",
-              "remark": "申请加入秒杀产品外键",
+              "remark": "申请加入秒杀商品外键",
+              "chnname": ""
+            },
+            {
+              "name": "total_count",
+              "type": "Integer",
+              "remark": "可卖数量",
+              "chnname": ""
+            },
+            {
+              "name": "sell_out_count",
+              "type": "Integer",
+              "remark": "卖出数量",
               "chnname": ""
             },
             {
@@ -5834,18 +5858,6 @@
               "name": "is_delete",
               "type": "Integer",
               "remark": "删除标记",
-              "chnname": ""
-            },
-            {
-              "name": "total_count",
-              "type": "Integer",
-              "remark": "可卖数量",
-              "chnname": ""
-            },
-            {
-              "name": "sell_out_count",
-              "type": "Integer",
-              "remark": "卖出数量",
               "chnname": ""
             },
             {
@@ -5914,7 +5926,7 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "秒杀产品申请表"
+          "chnname": "秒杀商品申请表"
         }
       ],
       "graphCanvas": {
