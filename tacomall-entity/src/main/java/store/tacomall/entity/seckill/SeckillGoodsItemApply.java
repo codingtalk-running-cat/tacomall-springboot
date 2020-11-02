@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-11-02 15:26:49
- * @LastEditTime: 2020-11-02 15:29:24
+ * @LastEditTime: 2020-11-02 16:20:32
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/seckill/SeckillGoodsItemApply.java
@@ -15,6 +15,8 @@ import java.util.Date;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
+
+import store.tacomall.entity.goods.GoodsItem;
 
 @Data
 public class SeckillGoodsItemApply {
@@ -38,5 +40,8 @@ public class SeckillGoodsItemApply {
     private Date updateTime;
 
     private Date deleteTime;
+
+    @TableField(exist = false)
+    private GoodsItem goodsItem;
 
 }

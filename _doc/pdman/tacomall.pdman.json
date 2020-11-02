@@ -5713,7 +5713,7 @@
               "chnname": ""
             },
             {
-              "name": "applay_used_count",
+              "name": "apply_used_count",
               "type": "Integer",
               "remark": "已申请加入数量",
               "chnname": ""
@@ -5725,7 +5725,7 @@
               "chnname": ""
             },
             {
-              "name": "end_tme",
+              "name": "end_time",
               "type": "DateTime",
               "remark": "结束时间",
               "chnname": ""

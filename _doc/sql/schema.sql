@@ -740,9 +740,9 @@ DROP TABLE IF EXISTS `seckill`;;/*SkipError*/
 CREATE TABLE `seckill`(
     id INT NOT NULL AUTO_INCREMENT  COMMENT '主键' ,
     apply_total_count INT    COMMENT '可申请加入数量' ,
-    applay_used_count INT    COMMENT '已申请加入数量' ,
+    apply_used_count INT    COMMENT '已申请加入数量' ,
     start_time DATETIME    COMMENT '开启时间' ,
-    end_tme DATETIME    COMMENT '结束时间' ,
+    end_time DATETIME    COMMENT '结束时间' ,
     is_delete INT   DEFAULT 0 COMMENT '删除标记' ,
     create_time DATETIME    COMMENT '创建时间' ,
     update_time DATETIME    COMMENT '更新时间' ,
