@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-19 16:58:16
+ * @LastEditTime: 2020-11-03 17:38:03
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: /tacomall-springboot/tacomall-job/tacomall-job-executor/src/main/java/store/tacomall/jobexecutor/handler/DemoJobHandler.java
+ * @FilePath: /tacomall-springboot/tacomall-job/tacomall-job-executor/src/main/java/store/tacomall/jobexecutor/handler/SeckillSku2RedisJobHandler.java
  * @微信:  13680065830
  * @邮箱:  3189482282@qq.com
  * @oops: Just do what I think it is right
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  * @since 2019-07-16
  */
 @Component
-public class DemoJobHandler implements IJobsHandler {
+public class SeckillSku2RedisJobHandler implements IJobsHandler {
 
     @Override
     public JobsResponse execute(String tenantId, String param) throws JobsException {

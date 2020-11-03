@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-13 14:40:58
- * @LastEditTime: 2020-11-02 18:21:23
+ * @LastEditTime: 2020-11-03 14:51:02
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/SeckillServiceImpl.java
@@ -52,6 +52,13 @@ public class SeckillServiceImpl extends ServiceImpl<SeckillMapper, Seckill> impl
         map.put("endTime", seckill.getEndTime());
         map.put("list", list);
         responseVo.setData(map);
+        return responseVo;
+    }
+
+    @Override
+    public ResponseVo<Map<String, Object>> buy() {
+        ResponseVo<Map<String, Object>> responseVo = new ResponseVo<>();
+        Map<String, Object> map = new HashMap<>();
         return responseVo;
     }
 }

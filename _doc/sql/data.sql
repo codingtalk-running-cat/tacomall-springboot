@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 02/11/2020 15:26:28
+ Date: 03/11/2020 17:32:23
 */
 
 SET NAMES utf8mb4;
@@ -230,11 +230,13 @@ CREATE TABLE `cart`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cart
 -- ----------------------------
+INSERT INTO `cart` VALUES (1, 1, 3, '1', 1, NULL, NULL, NULL);
+INSERT INTO `cart` VALUES (2, 1, 1, '1', 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for coupon
@@ -507,10 +509,10 @@ CREATE TABLE `goods_item`  (
 -- ----------------------------
 -- Records of goods_item
 -- ----------------------------
-INSERT INTO `goods_item` VALUES (1, 1, NULL, '小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 12GB+256GB  透明版 游戏手机', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `goods_item` VALUES (2, 1, NULL, '小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 8GB+128GB  透明版 游戏手机', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `goods_item` VALUES (3, 2, NULL, '格力（GREE）正1.5匹 品悦一级能效 变频冷暖 智能 壁挂式卧室空调挂机 KFR-35GW/(35592)FNhAc-A1(WIFI)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `goods_item` VALUES (4, 2, NULL, '格力（GREE）大1匹 品悦一级能效 变频冷暖 智能 壁挂式卧室空调挂机 KFR-26GW/(26592)FNhAc-A1(WIFI)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
+INSERT INTO `goods_item` VALUES (1, 1, NULL, '小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 12GB+256GB  透明版 游戏手机', NULL, NULL, 2499.00000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
+INSERT INTO `goods_item` VALUES (2, 1, NULL, '小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 8GB+128GB  透明版 游戏手机', NULL, NULL, 2999.00000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
+INSERT INTO `goods_item` VALUES (3, 2, NULL, '格力（GREE）正1.5匹 品悦一级能效 变频冷暖 智能 壁挂式卧室空调挂机 KFR-35GW/(35592)FNhAc-A1(WIFI)', NULL, NULL, 1799.00000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
+INSERT INTO `goods_item` VALUES (4, 2, NULL, '格力（GREE）大1匹 品悦一级能效 变频冷暖 智能 壁挂式卧室空调挂机 KFR-26GW/(26592)FNhAc-A1(WIFI)', NULL, NULL, 1999.00000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for goods_service
@@ -534,12 +536,23 @@ CREATE TABLE `goods_service`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs_info`;
 CREATE TABLE `jobs_info`  (
-  `REVISION` int(11) NULL DEFAULT NULL COMMENT '乐观锁',
-  `CREATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `CREATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `UPDATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '更新时间'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务信息表' ROW_FORMAT = Dynamic;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `tenant_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '租户ID',
+  `app` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '服务名',
+  `cron` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '任务执行CRON',
+  `handler` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '执行器任务handler',
+  `param` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '执行器任务参数',
+  `timeout` int(11) NOT NULL DEFAULT 0 COMMENT '任务执行超时时间，单位秒',
+  `fail_retry_count` int(11) NOT NULL DEFAULT 0 COMMENT '失败重试次数',
+  `last_time` bigint(20) NOT NULL DEFAULT 0 COMMENT '上次调度时间',
+  `next_time` bigint(20) NOT NULL DEFAULT 0 COMMENT '下次调度时间',
+  `author` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '作者',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0、启用 1、已禁用',
+  `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间',
+  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jobs_info
@@ -550,12 +563,13 @@ CREATE TABLE `jobs_info`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs_lock`;
 CREATE TABLE `jobs_lock`  (
-  `REVISION` int(11) NULL DEFAULT NULL COMMENT '乐观锁',
-  `CREATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `CREATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `UPDATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '更新时间'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务锁定表' ROW_FORMAT = Dynamic;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
+  `owner` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '持有者',
+  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uidx_name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 17425027 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务锁' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jobs_lock
@@ -566,12 +580,18 @@ CREATE TABLE `jobs_lock`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs_log`;
 CREATE TABLE `jobs_log`  (
-  `REVISION` int(11) NULL DEFAULT NULL COMMENT '乐观锁',
-  `CREATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `CREATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `UPDATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '更新时间'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务日志表' ROW_FORMAT = Dynamic;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `job_id` bigint(20) NOT NULL COMMENT '任务ID',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '执行地址',
+  `handler` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '任务 handler',
+  `param` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务参数',
+  `fail_retry_count` int(11) NOT NULL DEFAULT 0 COMMENT '失败重试次数',
+  `trigger_code` int(11) NOT NULL DEFAULT 0 COMMENT '触发器调度返回码',
+  `trigger_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '触发器调度类型',
+  `trigger_msg` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '触发器调度返回信息',
+  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1743096 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务调度日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jobs_log
@@ -582,12 +602,13 @@ CREATE TABLE `jobs_log`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs_registry`;
 CREATE TABLE `jobs_registry`  (
-  `REVISION` int(11) NULL DEFAULT NULL COMMENT '乐观锁',
-  `CREATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `CREATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `UPDATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '更新时间'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务注册表' ROW_FORMAT = Dynamic;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键 ID',
+  `app` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '服务名',
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'IP 地址',
+  `status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0、启用 1、已禁用',
+  `update_time` bigint(20) NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务注册信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jobs_registry
@@ -1002,18 +1023,19 @@ CREATE TABLE `order`  (
   `receipt_content` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票内容',
   `receipt_receiver_email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票收件邮箱',
   `receipt_receiver_mobile` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票收件手机号',
-  `status` int(11) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
+  `status` int(11) NULL DEFAULT 0 COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
   `note` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
+INSERT INTO `order` VALUES (1, 1, NULL, 1799.00000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for order_mapping_goods_item
@@ -1030,11 +1052,12 @@ CREATE TABLE `order_mapping_goods_item`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单/产品中间关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单/产品中间关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_mapping_goods_item
 -- ----------------------------
+INSERT INTO `order_mapping_goods_item` VALUES (1, 1, 3, 1799.00000000, 1, 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for order_return_apply
@@ -1075,9 +1098,9 @@ DROP TABLE IF EXISTS `seckill`;
 CREATE TABLE `seckill`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `apply_total_count` int(11) NULL DEFAULT NULL COMMENT '可申请加入数量',
-  `applay_used_count` int(11) NULL DEFAULT NULL COMMENT '已申请加入数量',
+  `apply_used_count` int(11) NULL DEFAULT NULL COMMENT '已申请加入数量',
   `start_time` datetime(0) NULL DEFAULT NULL COMMENT '开启时间',
-  `end_tme` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
+  `end_time` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',

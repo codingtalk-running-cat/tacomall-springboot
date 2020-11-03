@@ -1,22 +1,8 @@
 server:
   port: 5000
 spring:
-  application:
-    name: job-admin
   profiles:
     active: @environment@
-  mail:
-    host: smtp.qq.com
-    username: xxx@qq.com
-    password: xxx
-    port: 25
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   global-config:

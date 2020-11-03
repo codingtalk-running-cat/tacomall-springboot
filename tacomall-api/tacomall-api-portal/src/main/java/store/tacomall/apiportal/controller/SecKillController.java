@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-24 10:44:02
- * @LastEditTime: 2020-11-02 16:07:27
+ * @LastEditTime: 2020-11-03 14:46:37
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/SecKillController.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/SeckillController.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.controller;
@@ -38,5 +38,14 @@ public class SeckillController {
     @LoginUser(required = false)
     public ResponseVo<Map<String, Object>> info(@RequestBody JSONObject json) {
         return seckillService.info();
+    }
+
+    @ApiOperation(value = "抢购商品", notes = "抢购商品接口", httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "goodsItemId", value = "商品ID", required = true, paramType = "query") })
+    @PostMapping("buy")
+    @LoginUser
+    public ResponseVo<Map<String, Object>> buy(@RequestParam(value = "goodsItemId") int goodsItemId) {
+        return seckillService.buy();
     }
 }
