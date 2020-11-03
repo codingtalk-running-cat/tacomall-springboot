@@ -4,6 +4,7 @@
 
     <resultMap id="order" type="store.tacomall.entity.order.Order">
         <id property="id" column="id"></id>
+        <association property="orderMappingGoodsItem" column="id" select="store.tacomall.mapper.order.OrderMappingGoodsItemMapper.getOrderMappingGoodsItemsById"></association>
     </resultMap>
 
     <select id="getOrder" resultMap="order">

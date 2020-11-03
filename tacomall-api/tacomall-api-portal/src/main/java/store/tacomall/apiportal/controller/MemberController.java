@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-31 10:25:40
+ * @LastEditTime: 2020-11-03 08:58:19
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/MemberController.java
@@ -132,10 +132,13 @@ public class MemberController {
      * @return:
      */
     @ApiOperation(value = "用户订单", notes = "用户订单接口", httpMethod = "POST")
-    @ApiImplicitParams({})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "pageIndex", value = "分页页数", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "分页码数", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "json", value = "查询条件", required = true, paramType = "body") })
     @LoginUser
     @PostMapping("getOrderPage")
-    public ResponseVo<List<Order>> getOrderPage() {
-        return this.orderService.getOrderPage();
+    public ResponseVo<List<Order>> getOrderPage(@RequestParam(value = "pageIndex") int pageIndex,
+            @RequestParam(value = "pageSize") int pageSize, @RequestBody JSONObject json) {
+        return this.orderService.getOrderPage(pageIndex, pageSize, json);
     }
 }

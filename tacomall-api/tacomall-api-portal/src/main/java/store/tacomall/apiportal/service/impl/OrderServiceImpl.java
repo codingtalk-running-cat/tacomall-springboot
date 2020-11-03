@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-31 10:33:35
+ * @LastEditTime: 2020-11-03 10:16:02
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/impl/OrderServiceImpl.java
@@ -125,10 +125,16 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      * @return:
      */
     @Override
-    public ResponseVo<List<Order>> getOrderPage() {
+    public ResponseVo<List<Order>> getOrderPage(int pageIndex, int pageSize, JSONObject json) {
         ResponseVo<List<Order>> responseVo = new ResponseVo<>();
-        Page<Order> page = new Page<>(1, 3);
-        IPage<Order> result = this.baseMapper.getOrderPage(page, null);
+        Page<Order> page = new Page<>(pageIndex, pageSize);
+        LambdaQueryWrapper<Order> q = new QueryWrapper<Order>().lambda();
+        q.eq(Order::getMemberId, RequestUtil.getLoginUser().getInteger("id"));
+        if (ObjectUtil.isNotEmpty(json.getInteger("status")) && json.getInteger("status") != -1) {
+            q.eq(Order::getStatus, json.getInteger("status"));
+        }
+        q.eq(Order::getIsDelete, 0);
+        IPage<Order> result = this.baseMapper.getOrderPage(page, q);
         responseVo.setData(result.getRecords());
         return responseVo;
     }

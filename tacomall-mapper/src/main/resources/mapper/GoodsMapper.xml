@@ -4,7 +4,7 @@
 
     <resultMap id="goods" type="store.tacomall.entity.goods.Goods">
         <id property="id" column="id"></id>
-        <collection property="goodsItem" column="id" select="store.tacomall.mapper.goods.GoodsItemMapper.getGoodsItemByGoodsId"></collection>
+        <collection property="goodsItem" column="id" select="store.tacomall.mapper.goods.GoodsItemMapper.getGoodsItemsByGoodsId"></collection>
     </resultMap>
 
     <select id="getGoods" resultMap="goods">

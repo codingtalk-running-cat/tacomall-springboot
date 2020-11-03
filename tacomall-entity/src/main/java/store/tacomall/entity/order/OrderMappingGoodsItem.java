@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-30 18:05:13
- * @LastEditTime: 2020-10-30 18:07:28
+ * @LastEditTime: 2020-11-03 09:48:45
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/order/OrderMappingGoodsItem.java
@@ -16,6 +16,8 @@ import java.util.Date;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
+
+import store.tacomall.entity.goods.GoodsItem;
 
 @Data
 public class OrderMappingGoodsItem {
@@ -37,5 +39,8 @@ public class OrderMappingGoodsItem {
     private Date updateTime;
 
     private Date deleteTime;
+
+    @TableField(exist = false)
+    private GoodsItem goodsItem;
 
 }

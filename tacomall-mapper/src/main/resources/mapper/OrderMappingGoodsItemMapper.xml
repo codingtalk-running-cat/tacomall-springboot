@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.mapper.order.OrderMappingGoodsItemMapper">
+
+    <resultMap id="orderMappingGoodsItem" type="store.tacomall.entity.order.OrderMappingGoodsItem">
+        <id property="id" column="id"></id>
+        <association property="goodsItem" column="goods_item_id" select="store.tacomall.mapper.goods.GoodsItemMapper.selectById"></association>
+    </resultMap>
+
+    <select id="getOrderMappingGoodsItemsById" resultMap="orderMappingGoodsItem">
+        SELECT *
+        FROM order_mapping_goods_item
+        WHERE id = ${id}
+    </select>
+
+
+</mapper>

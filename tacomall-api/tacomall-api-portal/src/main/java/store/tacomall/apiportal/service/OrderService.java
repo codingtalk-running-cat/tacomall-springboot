@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-31 10:27:39
+ * @LastEditTime: 2020-11-03 08:59:03
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/service/OrderService.java
@@ -38,6 +38,6 @@ public interface OrderService extends IService<Order> {
      * @param {type}
      * @return:
      */
-    ResponseVo<List<Order>> getOrderPage();
+    ResponseVo<List<Order>> getOrderPage(int pageIndex, int pageSize, JSONObject json);
 
 }
