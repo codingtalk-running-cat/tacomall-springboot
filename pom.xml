@@ -20,6 +20,7 @@
         <module>tacomall-api/tacomall-api-admin</module>
         <module>tacomall-api/tacomall-api-portal</module>
         <module>tacomall-api/tacomall-api-merchant</module>
+        <module>tacomall-mq/tacomall-mq-rabbitmq</module>
     </modules>
 
     <parent>

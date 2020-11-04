@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-24 10:44:02
- * @LastEditTime: 2020-11-03 14:46:37
+ * @LastEditTime: 2020-11-04 16:16:14
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/SeckillController.java
@@ -46,6 +46,6 @@ public class SeckillController {
     @PostMapping("buy")
     @LoginUser
     public ResponseVo<Map<String, Object>> buy(@RequestParam(value = "goodsItemId") int goodsItemId) {
-        return seckillService.buy();
+        return seckillService.buy(goodsItemId);
     }
 }
