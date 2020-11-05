@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-24 10:44:02
- * @LastEditTime: 2020-11-04 16:16:14
+ * @LastEditTime: 2020-11-05 08:44:22
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/SeckillController.java
@@ -42,10 +42,11 @@ public class SeckillController {
 
     @ApiOperation(value = "抢购商品", notes = "抢购商品接口", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "goodsItemId", value = "商品ID", required = true, paramType = "query") })
+            @ApiImplicitParam(name = "seckillGoodsItemApplyId", value = "秒杀ID", required = true, paramType = "query") })
     @PostMapping("buy")
     @LoginUser
-    public ResponseVo<Map<String, Object>> buy(@RequestParam(value = "goodsItemId") int goodsItemId) {
-        return seckillService.buy(goodsItemId);
+    public ResponseVo<Map<String, Object>> buy(
+            @RequestParam(value = "seckillGoodsItemApplyId") int seckillGoodsItemApplyId) {
+        return seckillService.buy(seckillGoodsItemApplyId);
     }
 }

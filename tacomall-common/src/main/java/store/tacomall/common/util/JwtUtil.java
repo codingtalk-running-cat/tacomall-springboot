@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-19 17:42:36
+ * @LastEditTime: 2020-11-05 07:15:02
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-common/src/main/java/store/tacomall/common/util/JwtUtil.java
@@ -27,7 +27,7 @@ import store.tacomall.common.exceptionInterceptor.exception.BizException;
 
 public class JwtUtil {
 
-    private String SECRET = "codingtalk";
+    private String SECRET = "tacomall";
     private String ISSUER = "";
 
     public JwtUtil setISSUER(String ISSUER) {

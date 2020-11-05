@@ -1,3 +1,14 @@
+--[[
+Author: 码上talk|RC
+Date: 2020-11-04 15:43:50
+LastEditTime: 2020-11-05 11:32:10
+LastEditors: 码上talk|RC
+Description: 
+FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/resources/seckill.lua
+微信:  13680065830
+邮箱:  3189482282@qq.com
+oops: Just do what I think it is right
+--]]
 local function split(str, split_char)
     local sub_str_tab = {}
     while true do

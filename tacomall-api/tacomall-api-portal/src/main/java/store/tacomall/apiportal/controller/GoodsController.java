@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-30 15:40:22
+ * @LastEditTime: 2020-11-05 08:44:06
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/controller/GoodsController.java
@@ -10,7 +10,6 @@
 package store.tacomall.apiportal.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;

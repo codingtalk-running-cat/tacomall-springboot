@@ -12,3 +12,6 @@ spring:
     host: 127.0.0.1
     port: 7010
     password: 123456
+seckill:
+    mq-host: http://127.0.0.1
+    mq-port: 6000
