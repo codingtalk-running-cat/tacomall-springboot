@@ -1,13 +1,13 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-09-27 15:37:21
+ * @LastEditTime: 2020-11-06 08:21:43
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/merchant/MerchantUserService.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/MerchantUserService.java
  * @Just do what I think it is right
  */
-package store.tacomall.apimerchant.service.merchant;
+package store.tacomall.apimerchant.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 

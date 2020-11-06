@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-26 17:51:45
+ * @LastEditTime: 2020-11-06 08:21:32
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/UserController.java
@@ -19,7 +19,7 @@ import io.swagger.annotations.*;
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.merchant.MerchantUser;
 import store.tacomall.apimerchant.annotation.LoginLogger;
-import store.tacomall.apimerchant.service.merchant.MerchantUserService;
+import store.tacomall.apimerchant.service.MerchantUserService;
 
 @Api(tags = "用户模块")
 @RestController

@@ -1,15 +1,15 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:57
- * @LastEditTime: ,: 2020-10-21 20:05:39
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-11-06 08:21:55
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/goods/impl/GoodsServiceImpl.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/impl/GoodsServiceImpl.java
  * @微信:  13680065830
  * @邮箱:  3189482282@qq.com
  * @oops: Just do what I think it is right
  */
-package store.tacomall.apimerchant.service.goods.impl;
+package store.tacomall.apimerchant.service.impl;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import store.tacomall.common.util.ExceptionUtil;
-import store.tacomall.apimerchant.service.goods.GoodsService;
+import store.tacomall.apimerchant.service.GoodsService;
 import store.tacomall.entity.goods.Goods;
 import store.tacomall.entity.goods.GoodsItem;
 import store.tacomall.mapper.goods.GoodsMapper;

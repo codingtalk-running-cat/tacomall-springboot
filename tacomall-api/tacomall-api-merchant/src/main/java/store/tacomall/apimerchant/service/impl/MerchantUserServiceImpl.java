@@ -1,22 +1,23 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: ,: 2020-10-21 15:06:42
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-11-06 08:27:40
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/merchant/impl/MerchantUserServiceImpl.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/impl/MerchantUserServiceImpl.java
  * @Just do what I think it is right
  */
-package store.tacomall.apimerchant.service.merchant.impl;
+package store.tacomall.apimerchant.service.impl;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import store.tacomall.apimerchant.service.merchant.MerchantUserService;
+import store.tacomall.apimerchant.service.MerchantUserService;
 import store.tacomall.entity.merchant.MerchantUser;
 import store.tacomall.mapper.merchant.MerchantUserMapper;
 import store.tacomall.common.util.PasswordUtil;
@@ -76,7 +77,8 @@ public class MerchantUserServiceImpl extends ServiceImpl<MerchantUserMapper, Mer
         ResponseVo<MerchantUser> responseVo = new ResponseVo<>();
         MerchantUser merchantUser = (MerchantUser) SecurityUtils.getSubject().getPrincipal();
 
-        responseVo.setData(baseMapper.getMerchantUser(merchantUser.getId()));
+        responseVo.setData(baseMapper.getMerchantUser(
+                new QueryWrapper<MerchantUser>().lambda().eq(MerchantUser::getId, merchantUser.getId())));
         return responseVo;
     }
 

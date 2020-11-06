@@ -4,13 +4,13 @@
 
     <resultMap id="merchantUser" type="store.tacomall.entity.merchant.MerchantUser">
         <id property="id" column="id"></id>
-        <association property="merchant" column="merchant_id" select="store.tacomall.mapper.merchant.MerchantMapper.getMerchant"></association>
+        <association property="merchant" column="merchant_id" select="store.tacomall.mapper.merchant.MerchantMapper.selectById"></association>
     </resultMap>
 
     <select id="getMerchantUser" resultMap="merchantUser">
         SELECT *
-        FROM merchant_user au
-        WHERE au.id = #{id}
+        FROM merchant_user
+        ${ew.customSqlSegment}
     </select>
 
 </mapper>

@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:10:26
- * @LastEditTime: 2020-10-26 17:50:49
+ * @LastEditTime: 2020-11-06 08:21:23
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/GoodsController.java
@@ -24,7 +24,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.goods.Goods;
-import store.tacomall.apimerchant.service.goods.GoodsService;
+import store.tacomall.apimerchant.service.GoodsService;
 
 @Api(tags = "商品模块")
 @RestController

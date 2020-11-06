@@ -22,7 +22,7 @@ import io.swagger.annotations.*;
 
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.order.Order;
-import store.tacomall.apimerchant.service.order.OrderService;
+import store.tacomall.apimerchant.service.OrderService;
 
 @Api(tags = "订单模块")
 @RestController
