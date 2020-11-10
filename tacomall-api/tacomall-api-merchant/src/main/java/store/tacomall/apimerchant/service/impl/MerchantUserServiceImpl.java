@@ -51,7 +51,7 @@ public class MerchantUserServiceImpl extends ServiceImpl<MerchantUserMapper, Mer
             responseVo.setStatus(false);
             responseVo.setMessage("密码错误");
         }
-        return responseVo;
+        return responseVo.json();
     }
 
     /***
@@ -64,7 +64,7 @@ public class MerchantUserServiceImpl extends ServiceImpl<MerchantUserMapper, Mer
         ResponseVo<String> responseVo = new ResponseVo<>();
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return responseVo;
+        return responseVo.json();
     }
 
     /***
@@ -79,7 +79,7 @@ public class MerchantUserServiceImpl extends ServiceImpl<MerchantUserMapper, Mer
 
         responseVo.setData(baseMapper.getMerchantUser(
                 new QueryWrapper<MerchantUser>().lambda().eq(MerchantUser::getId, merchantUser.getId())));
-        return responseVo;
+        return responseVo.json();
     }
 
 }

@@ -98,7 +98,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             dataSourceTransactionManager.rollback(transactionStatus);
             ExceptionUtil.throwSqlException(e.toString());
         }
-        return responseVo;
+        return responseVo.json();
     }
 
     /***
@@ -116,7 +116,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         }
         q.eq(Order::getIsDelete, 0);
         responseVo.setData(this.baseMapper.getOrder(q));
-        return responseVo;
+        return responseVo.json();
     }
 
     /***
@@ -136,7 +136,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         q.eq(Order::getIsDelete, 0);
         IPage<Order> result = this.baseMapper.getOrderPage(page, q);
         responseVo.setData(result.getRecords());
-        return responseVo;
+        return responseVo.json();
     }
 
 }

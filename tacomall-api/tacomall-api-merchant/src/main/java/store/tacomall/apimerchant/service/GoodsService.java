@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:39
- * @LastEditTime: ,: 2020-10-20 15:44:31
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-11-10 15:07:54
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/goods/GoodsService.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/GoodsService.java
  * @微信:  13680065830
  * @邮箱:  3189482282@qq.com
  * @oops: Just do what I think it is right
@@ -26,7 +26,7 @@ public interface GoodsService extends IService<Goods> {
      * @param {type}
      * @return:
      */
-    ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize);
+    ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json);
 
     /***
      * @description: 商户商品详情

@@ -41,6 +41,6 @@ public class OssController {
     @PostMapping("callback")
     public ResponseVo<Object> callback() {
         ResponseVo<Object> responseVo = new ResponseVo<>();
-        return responseVo;
+        return responseVo.json();
     }
 }

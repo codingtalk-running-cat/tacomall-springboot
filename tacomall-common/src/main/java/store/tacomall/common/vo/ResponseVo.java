@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-11-02 16:19:34
+ * @LastEditTime: 2020-11-10 15:44:26
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-common/src/main/java/store/tacomall/common/vo/ResponseVo.java
@@ -23,5 +23,9 @@ public class ResponseVo<T> {
     private String message = BizEnum.OK.getMessage();
 
     private T data;
+
+    public ResponseVo<T> json() {
+        return new ResponseVo<T>();
+    }
 
 }

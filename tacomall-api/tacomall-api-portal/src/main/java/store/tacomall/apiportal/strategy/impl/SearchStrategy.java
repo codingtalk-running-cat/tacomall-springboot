@@ -39,6 +39,6 @@ public class SearchStrategy implements Strategy {
         map.put("recommend", goodsService.getGoodsPage(1, 10, new JSONObject()).getData());
         map.put("most", goodsService.getGoodsPage(1, 10, new JSONObject()).getData());
         responseVo.setData(map);
-        return responseVo;
+        return responseVo.json();
     }
 }

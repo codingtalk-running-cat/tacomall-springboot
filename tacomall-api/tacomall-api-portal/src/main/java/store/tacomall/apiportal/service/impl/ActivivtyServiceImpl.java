@@ -35,6 +35,6 @@ public class ActivivtyServiceImpl extends ServiceImpl<ActivityMapper, Activity> 
         Page<Activity> page = new Page<>(1, 3);
         IPage<Activity> result = this.baseMapper.getActivityPage(page);
         responseVo.setData(result.getRecords());
-        return responseVo;
+        return responseVo.json();
     };
 }

@@ -61,7 +61,7 @@ public class SeckillServiceImpl extends ServiceImpl<SeckillMapper, Seckill> impl
         map.put("endTime", seckill.getEndTime());
         map.put("list", list);
         responseVo.setData(map);
-        return responseVo;
+        return responseVo.json();
     }
 
     @Override
@@ -87,6 +87,6 @@ public class SeckillServiceImpl extends ServiceImpl<SeckillMapper, Seckill> impl
         }
         map.put("killCode", redisResult);
         responseVo.setData(map);
-        return responseVo;
+        return responseVo.json();
     }
 }
