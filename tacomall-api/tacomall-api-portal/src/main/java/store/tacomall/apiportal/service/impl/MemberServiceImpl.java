@@ -88,7 +88,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
         if (!wxService.getUserService().checkUserInfo(session.getSessionKey(), rawData, signature)) {
             responseVo.setMessage("user check failed");
-            return responseVo.json();
+            return responseVo;
         }
         WxMaUserInfo userInfo = wxService.getUserService().getUserInfo(session.getSessionKey(), encryptedData, iv);
         Member member = baseMapper.getMember(new QueryWrapper<Member>().lambda().inSql(Member::getId,
@@ -141,7 +141,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         token = jwtUtil.create(claims);
         responseVo.setStatus(true);
         responseVo.setData(token);
-        return responseVo.json();
+        return responseVo;
 
     }
 
@@ -155,7 +155,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         ResponseVo<Member> responseVo = new ResponseVo<>();
         responseVo.setData(baseMapper.getMember(
                 new QueryWrapper<Member>().lambda().eq(Member::getId, RequestUtil.getLoginUser().getString("id"))));
-        return responseVo.json();
+        return responseVo;
     }
 
 }

@@ -44,7 +44,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
         cart.setQuantity(quantity);
         this.baseMapper.insert(cart);
         responseVo.setData("添加购物车成功");
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -58,7 +58,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
         this.baseMapper.delete(
                 new QueryWrapper<Cart>().lambda().eq(Cart::getMemberId, RequestUtil.getLoginUser().getInteger("id"))
                         .in(Cart::getId, Arrays.asList(cartIds.split(","))));
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -76,7 +76,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
         }
         q.eq(Cart::getIsDelete, 0);
         responseVo.setData(this.baseMapper.getCarts(q));
-        return responseVo.json();
+        return responseVo;
     }
 
 }

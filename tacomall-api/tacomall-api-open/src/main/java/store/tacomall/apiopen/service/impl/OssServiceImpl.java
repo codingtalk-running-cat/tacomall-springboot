@@ -57,6 +57,6 @@ public class OssServiceImpl implements OssService {
             this.logger.info("storage authorize fail");
         }
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

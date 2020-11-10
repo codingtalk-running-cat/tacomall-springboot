@@ -37,6 +37,6 @@ public class TransactionStrategy implements Strategy {
         Map<String, Object> map = new HashMap<>();
         map.put("order", orderService.getOrder(json).getData());
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

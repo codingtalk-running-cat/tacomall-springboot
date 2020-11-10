@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:57
- * @LastEditTime: 2020-11-10 15:29:13
+ * @LastEditTime: 2020-11-10 16:20:25
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/impl/GoodsServiceImpl.java
@@ -35,6 +35,7 @@ import store.tacomall.entity.goods.GoodsItem;
 import store.tacomall.mapper.goods.GoodsMapper;
 import store.tacomall.mapper.goods.GoodsItemMapper;
 import store.tacomall.common.vo.ResponseVo;
+import store.tacomall.common.vo.ResponsePageVo;
 import store.tacomall.entity.merchant.MerchantUser;
 
 @Service
@@ -55,8 +56,8 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
      * @return:
      */
     @Override
-    public ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json) {
-        ResponseVo<List<Goods>> responseVo = new ResponseVo<>();
+    public ResponsePageVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json) {
+        ResponsePageVo<List<Goods>> responsePageVo = new ResponsePageVo<>();
         Page<Goods> page = new Page<>(pageIndex, pageSize);
         LambdaQueryWrapper<Goods> q = new QueryWrapper<Goods>().lambda();
         if (ObjectUtil.isNotEmpty(json.getJSONObject("query"))
@@ -64,8 +65,9 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
             q.like(Goods::getName, json.getJSONObject("query").get("keyword"));
         }
         IPage<Goods> result = this.baseMapper.getGoodsPage(page, q);
-        responseVo.setData(result.getRecords());
-        return responseVo.json();
+        responsePageVo.setData(result.getRecords());
+        responsePageVo.buildPage(result.getCurrent(), result.getSize(), result.getTotal());
+        return responsePageVo;
     }
 
     /***
@@ -77,7 +79,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     public ResponseVo<Goods> info(int id) {
         ResponseVo<Goods> responseVo = new ResponseVo<>();
         responseVo.setData(this.baseMapper.getGoods(new QueryWrapper<Goods>().lambda().eq(Goods::getId, id)));
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -105,7 +107,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
             dataSourceTransactionManager.rollback(transactionStatus);
             ExceptionUtil.throwSqlException(e.toString());
         }
-        return responseVo.json();
+        return responseVo;
     }
 
 }

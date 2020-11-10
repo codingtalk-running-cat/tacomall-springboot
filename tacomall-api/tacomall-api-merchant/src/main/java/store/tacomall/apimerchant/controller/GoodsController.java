@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:10:26
- * @LastEditTime: 2020-11-10 15:07:38
+ * @LastEditTime: 2020-11-10 16:10:23
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/GoodsController.java
@@ -23,6 +23,7 @@ import io.swagger.annotations.*;
 import com.alibaba.fastjson.JSONObject;
 
 import store.tacomall.common.vo.ResponseVo;
+import store.tacomall.common.vo.ResponsePageVo;
 import store.tacomall.entity.goods.Goods;
 import store.tacomall.apimerchant.service.GoodsService;
 
@@ -44,7 +45,7 @@ public class GoodsController {
             @ApiImplicitParam(name = "pageSize", value = "分页数量", required = true, paramType = "query"),
             @ApiImplicitParam(name = "json", value = "查询条件", required = true, paramType = "body") })
     @PostMapping("page")
-    public ResponseVo<List<Goods>> goodsPage(@RequestParam(value = "pageIndex") int pageIndex,
+    public ResponsePageVo<List<Goods>> goodsPage(@RequestParam(value = "pageIndex") int pageIndex,
             @RequestParam(value = "pageSize") int pageSize, @RequestBody JSONObject json) {
         return goodsService.getGoodsPage(pageIndex, pageSize, json);
     }

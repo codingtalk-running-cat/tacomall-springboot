@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:39
- * @LastEditTime: 2020-11-10 15:07:54
+ * @LastEditTime: 2020-11-10 16:10:38
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/GoodsService.java
@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import store.tacomall.entity.goods.Goods;
 import store.tacomall.common.vo.ResponseVo;
+import store.tacomall.common.vo.ResponsePageVo;
 
 public interface GoodsService extends IService<Goods> {
 
@@ -26,7 +27,7 @@ public interface GoodsService extends IService<Goods> {
      * @param {type}
      * @return:
      */
-    ResponseVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json);
+    ResponsePageVo<List<Goods>> getGoodsPage(int pageIndex, int pageSize, JSONObject json);
 
     /***
      * @description: 商户商品详情

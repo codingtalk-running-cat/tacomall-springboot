@@ -24,8 +24,4 @@ public class ResponseVo<T> {
 
     private T data;
 
-    public ResponseVo<T> json() {
-        return new ResponseVo<T>();
-    }
-
 }

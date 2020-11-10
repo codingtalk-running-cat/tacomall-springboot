@@ -50,7 +50,7 @@ public class GoodsCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapper, G
         ResponseVo<List<GoodsCategory>> responseVo = new ResponseVo<>();
         responseVo.setData(this.baseMapper.selectList(new QueryWrapper<GoodsCategory>().lambda()
                 .eq(GoodsCategory::getIsIndexFloor, 1).orderByAsc(GoodsCategory::getCreateTime)));
-        return responseVo.json();
+        return responseVo;
     };
 
     /***
@@ -63,7 +63,7 @@ public class GoodsCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapper, G
         ResponseVo<List<GoodsCategory>> responseVo = new ResponseVo<>();
         responseVo.setData(this.baseMapper.selectList(new QueryWrapper<GoodsCategory>().lambda()
                 .eq(GoodsCategory::getIsIndexCategory, 1).orderByAsc(GoodsCategory::getCreateTime)));
-        return responseVo.json();
+        return responseVo;
     };
 
     /***
@@ -88,6 +88,6 @@ public class GoodsCategoryServiceImpl extends ServiceImpl<GoodsCategoryMapper, G
             this.buildSubs(i, subs);
         });
         responseVo.setData(roots);
-        return responseVo.json();
+        return responseVo;
     };
 }

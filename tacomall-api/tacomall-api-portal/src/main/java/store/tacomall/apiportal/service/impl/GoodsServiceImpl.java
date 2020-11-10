@@ -39,7 +39,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
         ResponseVo<Goods> responseVo = new ResponseVo<>();
         Goods goods = this.baseMapper.getGoods(new QueryWrapper<Goods>().lambda().eq(Goods::getId, id));
         responseVo.setData(goods);
-        return responseVo.json();
+        return responseVo;
     };
 
     @Override
@@ -57,6 +57,6 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
         }
         IPage<Goods> result = this.baseMapper.getGoodsPage(page, q);
         responseVo.setData(result.getRecords());
-        return responseVo.json();
+        return responseVo;
     };
 }

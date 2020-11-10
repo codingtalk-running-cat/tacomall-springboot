@@ -48,6 +48,6 @@ public class CheckoutStrategy implements Strategy {
         map.put("cart", cart);
         map.put("amount", amount);
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

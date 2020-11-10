@@ -49,7 +49,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
             responseVo.setStatus(false);
             responseVo.setMessage("密码错误");
         }
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -62,7 +62,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         ResponseVo<String> responseVo = new ResponseVo<>();
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -76,7 +76,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         AdminUser user = (AdminUser) SecurityUtils.getSubject().getPrincipal();
 
         responseVo.setData(baseMapper.getAdminUser(user.getId()));
-        return responseVo.json();
+        return responseVo;
     }
 
 }

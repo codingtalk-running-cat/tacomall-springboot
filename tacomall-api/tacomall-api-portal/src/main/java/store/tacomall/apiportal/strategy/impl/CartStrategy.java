@@ -27,6 +27,6 @@ public class CartStrategy implements Strategy {
         Map<String, Object> map = new HashMap<>();
         map.put("favorite", "");
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

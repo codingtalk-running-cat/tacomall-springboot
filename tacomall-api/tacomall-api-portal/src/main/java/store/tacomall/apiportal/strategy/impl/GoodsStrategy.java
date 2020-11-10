@@ -32,6 +32,6 @@ public class GoodsStrategy implements Strategy {
         Map<String, Object> map = new HashMap<>();
         map.put("goods", goodsService.getGoods(json.getInteger("goodsId")).getData());
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

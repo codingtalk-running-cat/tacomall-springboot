@@ -37,7 +37,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Page<Order> page = new Page<>(pageIndex, pageSize);
         IPage<Order> result = this.baseMapper.getOrderPage(page, null);
         responseVo.setData(result.getRecords());
-        return responseVo.json();
+        return responseVo;
     }
 
     /***
@@ -49,7 +49,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public ResponseVo<Order> info(int id) {
         ResponseVo<Order> responseVo = new ResponseVo<>();
         responseVo.setData(this.baseMapper.getOrder(null));
-        return responseVo.json();
+        return responseVo;
     }
 
 }

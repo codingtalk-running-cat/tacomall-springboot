@@ -33,6 +33,6 @@ public class GoodsCategoryStrategy implements Strategy {
         Map<String, Object> map = new HashMap<>();
         map.put("goodsCategory", goodsCategoryService.getGoodsCategories().getData());
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }

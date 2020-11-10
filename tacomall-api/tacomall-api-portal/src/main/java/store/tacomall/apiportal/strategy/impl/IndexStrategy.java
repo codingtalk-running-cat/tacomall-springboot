@@ -57,6 +57,6 @@ public class IndexStrategy implements Strategy {
         map.put("activity", activityService.getActivityPage().getData());
         map.put("category", goodsCategoryService.getIndexCategoryGoodsCategories().getData());
         responseVo.setData(map);
-        return responseVo.json();
+        return responseVo;
     }
 }
