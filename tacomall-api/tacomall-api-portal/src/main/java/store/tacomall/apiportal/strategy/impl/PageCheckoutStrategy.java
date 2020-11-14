@@ -23,11 +23,11 @@ import org.springframework.stereotype.Component;
 
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.cart.Cart;
-import store.tacomall.apiportal.strategy.Strategy;
+import store.tacomall.apiportal.strategy.PageStrategy;
 import store.tacomall.apiportal.service.CartService;
 
 @Component("checkout")
-public class CheckoutStrategy implements Strategy {
+public class PageCheckoutStrategy implements PageStrategy {
 
     @Autowired
     private CartService cartService;

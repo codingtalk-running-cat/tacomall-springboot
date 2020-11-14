@@ -1,3 +1,14 @@
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          username: root
+          password: 123456
+          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+          url: jdbc:p6spy:mysql://localhost:3306/tacomall?serverTimezone=Asia/Shanghai
+
 oss:
   endPoint: oss-cn-shenzhen.aliyuncs.com
   accesskey: LTAI4Fickf14NieXeJSAQxcH

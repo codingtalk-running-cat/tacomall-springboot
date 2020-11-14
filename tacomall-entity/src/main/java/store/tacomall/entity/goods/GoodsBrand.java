@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-11 20:57:06
- * @LastEditTime: 2020-07-24 10:36:28
+ * @LastEditTime: 2020-11-14 11:17:55
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/GoodsBrand.java
@@ -18,6 +18,8 @@ import com.baomidou.mybatisplus.annotation.*;
 public class GoodsBrand {
     @TableId(value = "id", type = IdType.AUTO)
     private int id;
+
+    private String name;
 
     private int isDelete;
 

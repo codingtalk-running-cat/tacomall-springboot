@@ -1,10 +1,10 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-07-10 17:00:09
- * @LastEditTime: 2020-10-26 18:42:26
+ * @LastEditTime: 2020-11-14 11:06:28
  * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/IndexStrategy.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-portal/src/main/java/store/tacomall/apiportal/strategy/impl/PageIndexStrategy.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiportal.strategy.impl;
@@ -20,13 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import store.tacomall.common.vo.ResponseVo;
 import store.tacomall.entity.goods.GoodsCategory;
-import store.tacomall.apiportal.strategy.Strategy;
+import store.tacomall.apiportal.strategy.PageStrategy;
 import store.tacomall.apiportal.service.GoodsCategoryService;
 import store.tacomall.apiportal.service.ActivityService;
 import store.tacomall.apiportal.service.GoodsService;
 
 @Component("index")
-public class IndexStrategy implements Strategy {
+public class PageIndexStrategy implements PageStrategy {
 
     @Autowired
     private GoodsCategoryService goodsCategoryService;
