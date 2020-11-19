@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:57
- * @LastEditTime: 2020-11-10 16:20:25
+ * @LastEditTime: 2020-11-19 16:01:43
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/impl/GoodsServiceImpl.java
@@ -88,8 +88,8 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
      * @return:
      */
     @Override
-    public ResponseVo<Boolean> add(JSONObject json) {
-        ResponseVo<Boolean> responseVo = new ResponseVo<>();
+    public ResponseVo<Goods> add(JSONObject json) {
+        ResponseVo<Goods> responseVo = new ResponseVo<>();
         responseVo.setStatus(false);
         Goods goods = JSON.toJavaObject(json, Goods.class);
         TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
@@ -103,6 +103,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
             });
             dataSourceTransactionManager.commit(transactionStatus);
             responseVo.setStatus(true);
+            responseVo.setData(goods);
         } catch (Exception e) {
             dataSourceTransactionManager.rollback(transactionStatus);
             ExceptionUtil.throwSqlException(e.toString());

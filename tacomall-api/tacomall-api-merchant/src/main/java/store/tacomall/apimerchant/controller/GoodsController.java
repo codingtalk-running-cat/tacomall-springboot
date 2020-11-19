@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:10:26
- * @LastEditTime: 2020-11-10 16:10:23
+ * @LastEditTime: 2020-11-19 16:01:35
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/controller/GoodsController.java
@@ -70,7 +70,7 @@ public class GoodsController {
     @ApiOperation(value = "商户商品添加", notes = "商户商品添加接口", httpMethod = "POST")
     @ApiImplicitParams({})
     @PostMapping("add")
-    public ResponseVo<Boolean> add(@RequestBody JSONObject json) {
+    public ResponseVo<Goods> add(@RequestBody JSONObject json) {
         return goodsService.add(json);
     }
 }

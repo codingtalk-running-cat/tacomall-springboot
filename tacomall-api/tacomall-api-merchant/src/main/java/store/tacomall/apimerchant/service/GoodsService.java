@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-10-19 16:12:39
- * @LastEditTime: 2020-11-10 16:10:38
+ * @LastEditTime: 2020-11-19 16:01:28
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-merchant/src/main/java/store/tacomall/apimerchant/service/GoodsService.java
@@ -41,5 +41,5 @@ public interface GoodsService extends IService<Goods> {
      * @param {type}
      * @return:
      */
-    ResponseVo<Boolean> add(JSONObject json);
+    ResponseVo<Goods> add(JSONObject json);
 }
