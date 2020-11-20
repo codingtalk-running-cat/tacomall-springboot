@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: 2020-10-28 19:12:49
+ * @LastEditTime: 2020-11-20 16:38:11
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/goods/Goods.java
@@ -11,6 +11,7 @@ package store.tacomall.entity.goods;
 
 import java.util.List;
 import java.util.Date;
+import java.math.BigDecimal;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.*;
@@ -26,7 +27,7 @@ public class Goods {
 
     private String name;
 
-    private String attrJson;
+    private BigDecimal amount;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private int isDelete;

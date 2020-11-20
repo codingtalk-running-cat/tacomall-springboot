@@ -1209,12 +1209,6 @@
               "chnname": ""
             },
             {
-              "name": "attr_json",
-              "type": "MiddleString",
-              "remark": "商品规格json",
-              "chnname": ""
-            },
-            {
               "name": "is_delete",
               "type": "Integer",
               "remark": "删除标记",
@@ -1314,6 +1308,12 @@
               "chnname": ""
             },
             {
+              "name": "attr_json",
+              "type": "MiddleString",
+              "remark": "商品规格",
+              "chnname": ""
+            },
+            {
               "name": "name",
               "type": "MiddleString",
               "remark": "名称",
@@ -1323,6 +1323,18 @@
               "name": "cover",
               "type": "DefaultString",
               "remark": "封面",
+              "chnname": ""
+            },
+            {
+              "name": "amount",
+              "type": "Money",
+              "remark": "金额",
+              "chnname": ""
+            },
+            {
+              "name": "market_amount",
+              "type": "Money",
+              "remark": "市场价",
               "chnname": ""
             },
             {
@@ -1503,105 +1515,6 @@
           "chnname": "商品表"
         },
         {
-          "title": "goods_attr_category",
-          "fields": [
-            {
-              "name": "id",
-              "type": "Integer",
-              "remark": "主键",
-              "chnname": "",
-              "pk": true,
-              "notNull": true,
-              "autoIncrement": true
-            },
-            {
-              "name": "p_id",
-              "type": "Integer",
-              "remark": "父id",
-              "chnname": ""
-            },
-            {
-              "name": "name",
-              "type": "DefaultString",
-              "remark": "名称",
-              "chnname": ""
-            },
-            {
-              "name": "is_delete",
-              "type": "Integer",
-              "remark": "删除标记",
-              "chnname": "",
-              "defaultValue": "0"
-            },
-            {
-              "name": "create_time",
-              "type": "DateTime",
-              "remark": "创建时间",
-              "chnname": ""
-            },
-            {
-              "name": "update_time",
-              "type": "DateTime",
-              "remark": "更新时间",
-              "chnname": ""
-            },
-            {
-              "name": "delete_time",
-              "type": "DateTime",
-              "remark": "删除时间",
-              "chnname": ""
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "商品属性分类表"
-        },
-        {
           "title": "goods_attr_key",
           "fields": [
             {
@@ -1614,9 +1527,9 @@
               "autoIncrement": true
             },
             {
-              "name": "attr_category_id",
+              "name": "category_id",
               "type": "Integer",
-              "remark": "属性分类表外键",
+              "remark": "产品分类表外键",
               "chnname": ""
             },
             {
