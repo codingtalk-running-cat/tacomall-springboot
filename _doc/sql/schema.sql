@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 03/11/2020 17:32:33
+ Date: 23/11/2020 19:18:12
 */
 
 SET NAMES utf8mb4;
@@ -57,52 +57,36 @@ CREATE TABLE `admin_auth_role`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理权限角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for admin_auth_role_mapping_rule
+-- Table structure for admin_auth_role_mapping_route
 -- ----------------------------
-DROP TABLE IF EXISTS `admin_auth_role_mapping_rule`;
-CREATE TABLE `admin_auth_role_mapping_rule`  (
+DROP TABLE IF EXISTS `admin_auth_role_mapping_route`;
+CREATE TABLE `admin_auth_role_mapping_route`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `role_id` int(11) NULL DEFAULT NULL COMMENT '角色外键',
-  `rule_id` int(11) NULL DEFAULT NULL COMMENT '规则外键',
+  `route_id` int(11) NULL DEFAULT NULL COMMENT '规则外键',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理权限角色/规则关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限角色/路由关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for admin_auth_rule
+-- Table structure for admin_auth_route
 -- ----------------------------
-DROP TABLE IF EXISTS `admin_auth_rule`;
-CREATE TABLE `admin_auth_rule`  (
+DROP TABLE IF EXISTS `admin_auth_route`;
+CREATE TABLE `admin_auth_route`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规则名称',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '路由标致',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   `update_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理权限规则表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for admin_auth_rule_view
--- ----------------------------
-DROP TABLE IF EXISTS `admin_auth_rule_view`;
-CREATE TABLE `admin_auth_rule_view`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rule_id` int(11) NULL DEFAULT NULL COMMENT '规则外键',
-  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视图名称',
-  `path` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '视图地址',
-  `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理权限规则视图表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限路由表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for admin_coupon
@@ -153,7 +137,7 @@ CREATE TABLE `admin_user`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '平台用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '平台用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for admin_user_login_logger
@@ -168,7 +152,7 @@ CREATE TABLE `admin_user_login_logger`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员登录日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for cart
@@ -225,8 +209,9 @@ CREATE TABLE `goods`  (
   `sn` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '编号',
   `name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `cover` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面',
+  `amount` decimal(32, 8) NULL DEFAULT NULL COMMENT '金额',
+  `market_amount` decimal(32, 8) NULL DEFAULT NULL COMMENT '市场价',
   `description` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `attr_json` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品规格json',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
@@ -248,27 +233,12 @@ CREATE TABLE `goods_aftermarket`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品售后表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for goods_attr_category
--- ----------------------------
-DROP TABLE IF EXISTS `goods_attr_category`;
-CREATE TABLE `goods_attr_category`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `p_id` int(11) NULL DEFAULT NULL COMMENT '父id',
-  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
-  `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品属性分类表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for goods_attr_key
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_attr_key`;
 CREATE TABLE `goods_attr_key`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `attr_category_id` int(11) NULL DEFAULT NULL COMMENT '属性分类表外键',
+  `category_id` int(11) NULL DEFAULT NULL COMMENT '属性分类表外键',
   `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `is_delete` int(11) NULL DEFAULT 0 COMMENT '删除标记',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -306,7 +276,7 @@ CREATE TABLE `goods_brand`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品品牌表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品品牌表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for goods_category
@@ -367,6 +337,7 @@ CREATE TABLE `goods_item`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `goods_id` int(11) NULL DEFAULT NULL COMMENT '产品表外键',
   `sn` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '编号',
+  `attr_json` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品规格',
   `name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `cover` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面',
   `description` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
@@ -407,6 +378,14 @@ CREATE TABLE `goods_service`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品服务表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for hibernate_sequence
+-- ----------------------------
+DROP TABLE IF EXISTS `hibernate_sequence`;
+CREATE TABLE `hibernate_sequence`  (
+  `next_val` bigint(20) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for jobs_info
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs_info`;
@@ -427,7 +406,7 @@ CREATE TABLE `jobs_info`  (
   `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间',
   `create_time` bigint(20) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for jobs_lock
@@ -440,7 +419,7 @@ CREATE TABLE `jobs_lock`  (
   `create_time` bigint(20) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uidx_name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17425027 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务锁' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务锁' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for jobs_log
@@ -458,7 +437,7 @@ CREATE TABLE `jobs_log`  (
   `trigger_msg` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '触发器调度返回信息',
   `create_time` bigint(20) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1743096 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务调度日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1746390 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务调度日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for jobs_registry
@@ -471,7 +450,7 @@ CREATE TABLE `jobs_registry`  (
   `status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0、启用 1、已禁用',
   `update_time` bigint(20) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务注册信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '任务注册信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for member
@@ -491,7 +470,7 @@ CREATE TABLE `member`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for member_address
@@ -641,7 +620,7 @@ CREATE TABLE `member_statistics_info`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户统计信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户统计信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for member_weixin
@@ -660,7 +639,7 @@ CREATE TABLE `member_weixin`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户微信表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户微信表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for member_weixin_ma
@@ -675,7 +654,7 @@ CREATE TABLE `member_weixin_ma`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户微信小程序表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户微信小程序表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for merchant
@@ -808,7 +787,7 @@ CREATE TABLE `order`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20002 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for order_mapping_goods_item
@@ -825,7 +804,7 @@ CREATE TABLE `order_mapping_goods_item`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单/产品中间关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 50007 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单/产品中间关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for order_return_apply
@@ -946,5 +925,22 @@ CREATE TABLE `sys_weixin_ma_config`  (
   `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `UPDATED_TIME` datetime(0) NULL DEFAULT NULL COMMENT '更新时间'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信小程序配置表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_tx_exception
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tx_exception`;
+CREATE TABLE `t_tx_exception`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `unit_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `mod_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `transaction_state` tinyint(4) NULL DEFAULT NULL,
+  `registrar` tinyint(4) NULL DEFAULT NULL COMMENT '-1 未知 0 Manager 通知事务失败， 1 client询问事务状态失败2 事务发起方关闭事务组失败',
+  `ex_state` tinyint(4) NULL DEFAULT NULL COMMENT '0 待处理 1已处理',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;
