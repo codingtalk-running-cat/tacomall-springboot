@@ -1,15 +1,13 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-09 23:20:41
- * @LastEditTime: ,: 2020-10-21 15:07:11
- * @LastEditors: ,: 码上talk|RC
+ * @LastEditTime: 2020-11-23 15:42:56
+ * @LastEditors: 码上talk|RC
  * @Description: 
- * @FilePath: ,: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/store/tacomall/apiadmin/shiro/MyShiroRealm.java
+ * @FilePath: /tacomall-springboot/tacomall-api/tacomall-api-admin/src/main/java/store/tacomall/apiadmin/shiro/MyShiroRealm.java
  * @Just do what I think it is right
  */
 package store.tacomall.apiadmin.shiro;
-
-import java.util.List;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -21,7 +19,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import cn.hutool.core.util.ObjectUtil;
 
 import store.tacomall.entity.admin.AdminUser;
-import store.tacomall.entity.admin.AdminAuthRule;
 import store.tacomall.mapper.admin.AdminUserMapper;
 
 public class MyShiroRealm extends AuthorizingRealm {
@@ -33,12 +30,9 @@ public class MyShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         AdminUser adminUser = (AdminUser) principal.getPrimaryPrincipal();
         try {
-            authorizationInfo.addRole(adminUserMapper.getAdminUser(adminUser.getId()).getRole().getName());
-
-            List<AdminAuthRule> adminAuthRules = adminUserMapper.getAdminUser(adminUser.getId()).getRule();
-            for (AdminAuthRule adminAuthRule : adminAuthRules) {
-                authorizationInfo.addStringPermission(adminAuthRule.getName());
-            }
+            authorizationInfo.addRole(adminUserMapper
+                    .getUser(new QueryWrapper<AdminUser>().lambda().eq(AdminUser::getId, adminUser.getId())).getRole()
+                    .getName());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4309,10 +4309,10 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "管理权限角色表"
+          "chnname": "权限角色表"
         },
         {
-          "title": "admin_auth_rule",
+          "title": "admin_auth_route",
           "fields": [
             {
               "name": "id",
@@ -4326,7 +4326,7 @@
             {
               "name": "name",
               "type": "IdOrKey",
-              "remark": "规则名称",
+              "remark": "路由标致",
               "chnname": ""
             },
             {
@@ -4402,115 +4402,10 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "管理权限规则表"
+          "chnname": "权限路由表"
         },
         {
-          "title": "admin_auth_rule_view",
-          "fields": [
-            {
-              "name": "id",
-              "type": "Integer",
-              "remark": "主键",
-              "chnname": "",
-              "pk": true,
-              "notNull": true,
-              "autoIncrement": true
-            },
-            {
-              "name": "rule_id",
-              "type": "Integer",
-              "remark": "规则外键",
-              "chnname": ""
-            },
-            {
-              "name": "name",
-              "type": "DefaultString",
-              "remark": "视图名称",
-              "chnname": ""
-            },
-            {
-              "name": "path",
-              "type": "DefaultString",
-              "remark": "视图地址",
-              "chnname": ""
-            },
-            {
-              "name": "is_delete",
-              "type": "Integer",
-              "remark": "删除标记",
-              "chnname": "",
-              "defaultValue": "0"
-            },
-            {
-              "name": "create_time",
-              "type": "DateTime",
-              "remark": "创建时间",
-              "chnname": ""
-            },
-            {
-              "name": "update_time",
-              "type": "DateTime",
-              "remark": "更新时间",
-              "chnname": ""
-            },
-            {
-              "name": "delete_time",
-              "type": "DateTime",
-              "remark": "删除时间",
-              "chnname": ""
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "管理权限规则视图表"
-        },
-        {
-          "title": "admin_auth_role_mapping_rule",
+          "title": "admin_auth_role_mapping_route",
           "fields": [
             {
               "name": "id",
@@ -4528,7 +4423,7 @@
               "chnname": ""
             },
             {
-              "name": "rule_id",
+              "name": "route_id",
               "type": "Integer",
               "remark": "规则外键",
               "chnname": ""
@@ -4606,7 +4501,7 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "管理权限角色/规则关联表"
+          "chnname": "权限角色/路由关联表"
         },
         {
           "title": "admin_delivery",

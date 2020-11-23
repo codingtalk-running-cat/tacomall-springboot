@@ -1,7 +1,7 @@
 /***
  * @Author: 码上talk|RC
  * @Date: 2020-06-12 17:32:54
- * @LastEditTime: 2020-10-19 17:48:25
+ * @LastEditTime: 2020-11-23 15:29:46
  * @LastEditors: 码上talk|RC
  * @Description: 
  * @FilePath: /tacomall-springboot/tacomall-entity/src/main/java/store/tacomall/entity/admin/AdminUser.java
@@ -38,7 +38,4 @@ public class AdminUser {
 
     @TableField(exist = false)
     private AdminAuthRole role;
-
-    @TableField(exist = false)
-    private List<AdminAuthRule> rule;
 }

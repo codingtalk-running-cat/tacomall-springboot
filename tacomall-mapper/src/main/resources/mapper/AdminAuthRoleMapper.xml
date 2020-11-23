@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.mapper.admin.AdminAuthRoleMapper">
+
+    <resultMap id="role" type="store.tacomall.entity.admin.AdminAuthRole">
+        <id property="id" column="id"></id>
+        <collection property="routes" column="id" select="store.tacomall.mapper.admin.AdminAuthRouteMapper.getRoutesByRoleId"></collection>
+    </resultMap>
+
+    <select id="getRoleById" resultMap="role">
+        SELECT *
+        FROM admin_auth_role
+        WHERE id = ${id}
+    </select>
+
+</mapper>
