@@ -3016,6 +3016,116 @@
       "chnname": "优惠券",
       "entities": [
         {
+          "title": "coupon_type",
+          "fields": [
+            {
+              "name": "id",
+              "type": "Integer",
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "p_id",
+              "type": "Integer",
+              "remark": "父级分类",
+              "chnname": ""
+            },
+            {
+              "name": "name",
+              "type": "DefaultString",
+              "remark": "优惠券类型名称",
+              "chnname": ""
+            },
+            {
+              "name": "cover",
+              "type": "MiddleString",
+              "remark": "优惠券封面",
+              "chnname": ""
+            },
+            {
+              "name": "description",
+              "type": "LongText",
+              "remark": "优惠券描述",
+              "chnname": ""
+            },
+            {
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": ""
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "创建时间",
+              "chnname": ""
+            },
+            {
+              "name": "update_time",
+              "type": "DateTime",
+              "remark": "更新时间",
+              "chnname": ""
+            },
+            {
+              "name": "delete_time",
+              "type": "DateTime",
+              "remark": "删除时间",
+              "chnname": ""
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "优惠券分类表"
+        },
+        {
           "title": "coupon",
           "fields": [
             {
@@ -3028,15 +3138,15 @@
               "autoIncrement": true
             },
             {
-              "name": "give_type",
+              "name": "type_id",
               "type": "Integer",
-              "remark": "优惠卷类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券",
+              "remark": "优惠券类型外键",
               "chnname": ""
             },
             {
-              "name": "use_type",
+              "name": "give_type",
               "type": "Integer",
-              "remark": "使用类型：0->全场通用；1->指定分类；2->指定商品",
+              "remark": "优惠卷类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券",
               "chnname": ""
             },
             {
@@ -3090,7 +3200,7 @@
             {
               "name": "per_limit_count",
               "type": "Integer",
-              "remark": "没人限领数量",
+              "remark": "每人限领数量",
               "chnname": ""
             },
             {
@@ -3184,6 +3294,181 @@
             }
           ],
           "chnname": "优惠券主表"
+        },
+        {
+          "title": "coupon_mapping_goods_category",
+          "fields": [
+            {
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": ""
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "创建时间",
+              "chnname": ""
+            },
+            {
+              "name": "update_time",
+              "type": "DateTime",
+              "remark": "更新时间",
+              "chnname": ""
+            },
+            {
+              "name": "delete_time",
+              "type": "DateTime",
+              "remark": "删除时间",
+              "chnname": ""
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "优惠券/产品分类中间关联表"
+        },
+        {
+          "title": "coupon_goods",
+          "fields": [
+            {
+              "name": "id",
+              "type": "Integer",
+              "remark": "主键",
+              "chnname": "",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "coupon_id",
+              "type": "Integer",
+              "remark": "优惠券外键",
+              "chnname": ""
+            },
+            {
+              "name": "goods_id",
+              "type": "Integer",
+              "remark": "产品外键",
+              "chnname": ""
+            },
+            {
+              "name": "is_delete",
+              "type": "Integer",
+              "remark": "删除标记",
+              "chnname": ""
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "创建时间",
+              "chnname": ""
+            },
+            {
+              "name": "update_time",
+              "type": "DateTime",
+              "remark": "更新时间",
+              "chnname": ""
+            },
+            {
+              "name": "delete_time",
+              "type": "DateTime",
+              "remark": "删除时间",
+              "chnname": ""
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "优惠券产品表"
         }
       ],
       "graphCanvas": {
@@ -4504,89 +4789,6 @@
           "chnname": "权限角色/路由关联表"
         },
         {
-          "title": "admin_delivery",
-          "fields": [
-            {
-              "name": "REVISION",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "CREATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "CREATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "UPDATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "UPDATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "物流表"
-        },
-        {
           "title": "admin_user_login_logger",
           "fields": [
             {
@@ -4795,160 +4997,6 @@
             }
           ],
           "chnname": "平台用户表"
-        },
-        {
-          "title": "admin_coupon",
-          "fields": [
-            {
-              "name": "is_delete",
-              "type": "Integer",
-              "remark": "删除标记",
-              "chnname": ""
-            },
-            {
-              "name": "create_time",
-              "type": "DateTime",
-              "remark": "创建时间",
-              "chnname": ""
-            },
-            {
-              "name": "update_time",
-              "type": "DateTime",
-              "remark": "更新时间",
-              "chnname": ""
-            },
-            {
-              "name": "delete_time",
-              "type": "DateTime",
-              "remark": "删除时间",
-              "chnname": ""
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "平台全平类表"
-        },
-        {
-          "title": "admin_coupon_mapping_goods_category",
-          "fields": [
-            {
-              "name": "is_delete",
-              "type": "Integer",
-              "remark": "删除标记",
-              "chnname": ""
-            },
-            {
-              "name": "create_time",
-              "type": "DateTime",
-              "remark": "创建时间",
-              "chnname": ""
-            },
-            {
-              "name": "update_time",
-              "type": "DateTime",
-              "remark": "更新时间",
-              "chnname": ""
-            },
-            {
-              "name": "delete_time",
-              "type": "DateTime",
-              "remark": "删除时间",
-              "chnname": ""
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "平台优惠券/产品分类中间关联表"
         }
       ],
       "graphCanvas": {
@@ -5735,6 +5783,100 @@
             }
           ],
           "chnname": "秒杀商品申请表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    },
+    {
+      "name": "delivery",
+      "chnname": "快递",
+      "entities": [
+        {
+          "title": "delivery",
+          "fields": [
+            {
+              "name": "REVISION",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "物流表"
         }
       ],
       "graphCanvas": {
