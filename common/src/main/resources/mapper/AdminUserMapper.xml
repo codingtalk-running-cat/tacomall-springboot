@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.common.mapper.admin.AdminUserMapper">
+
+    <resultMap id="user" type="store.tacomall.common.entity.admin.AdminUser">
+        <id property="id" column="id"></id>
+        <association property="role" column="auth_role_id" select="store.tacomall.common.mapper.admin.AdminAuthRoleMapper.selectById"></association>
+    </resultMap>
+
+    <select id="getUser" resultMap="user">
+        SELECT *
+        FROM admin_user
+        ${ew.customSqlSegment}
+    </select>
+
+</mapper>

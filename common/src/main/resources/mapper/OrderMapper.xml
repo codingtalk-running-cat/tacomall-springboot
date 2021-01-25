@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.common.mapper.order.OrderMapper">
+
+    <resultMap id="order" type="store.tacomall.common.entity.order.Order">
+        <id property="id" column="id"></id>
+        <association property="member" column="member_id" select="store.tacomall.common.mapper.member.MemberMapper.selectById"></association>
+        <collection property="orderMappingGoodsItem" column="id" select="store.tacomall.common.mapper.order.OrderMappingGoodsItemMapper.getOrderMappingGoodsItemsByOrderId"></collection>
+    </resultMap>
+
+    <select id="getOrder" resultMap="order">
+        SELECT *
+        FROM `order`
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="getOrderPage" resultMap="order">
+        SELECT *
+        FROM `order`
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="getOrders" resultMap="order">
+        SELECT *
+        FROM `order`
+        ${ew.customSqlSegment}
+    </select>
+
+
+</mapper>

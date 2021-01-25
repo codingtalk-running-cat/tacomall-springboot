@@ -1,0 +1,14 @@
+server:
+  port: 5000
+spring:
+  profiles:
+    active: @environment@
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  global-config:
+    banner: true
+    db-config:
+      id-type: auto
+  configuration:
+    cache-enabled: false
+    map-underscore-to-camel-case: true

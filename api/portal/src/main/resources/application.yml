@@ -1,0 +1,28 @@
+server:
+  port: 4000
+
+spring:
+  profiles:
+    active: @environment@
+
+logging:
+  level:
+    store.tacomall.common.mapper: debug
+
+wx:
+  miniapp:
+    configs:
+      - appid: wx564dd23bb47073b1
+        secret: faa224520d72eaa504db43654d09e696
+        token:
+        aesKey:
+        msgDataFormat: JSON
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  type-aliases-package: store.tacomall.common
+  mapper-locations: classpath:/mapper/*Mapper.xml

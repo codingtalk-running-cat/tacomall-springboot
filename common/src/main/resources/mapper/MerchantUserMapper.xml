@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.common.mapper.merchant.MerchantUserMapper">
+
+    <resultMap id="merchantUser" type="store.tacomall.common.entity.merchant.MerchantUser">
+        <id property="id" column="id"></id>
+        <association property="merchant" column="merchant_id" select="store.tacomall.common.mapper.merchant.MerchantMapper.selectById"></association>
+    </resultMap>
+
+    <select id="getMerchantUser" resultMap="merchantUser">
+        SELECT *
+        FROM merchant_user
+        ${ew.customSqlSegment}
+    </select>
+
+</mapper>

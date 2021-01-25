@@ -1,0 +1,12 @@
+version: "3"
+services:
+  mysql:
+    image: ${PROJECT_NAME}_mysql
+    build: ${IMAGE_MYSQL}
+    container_name: ${PROJECT_NAME}_mysql_v1
+    ports:
+      - ${PORT_MYSQL}:3306
+    volumes:
+      - ${IMAGE_MYSQL}/data:/var/lib/mysql/:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD_MYSQL}

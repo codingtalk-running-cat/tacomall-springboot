@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.tacomall.common.mapper.seckill.SeckillGoodsItemApplyMapper">
+
+    <resultMap id="seckillGoodsItemApply" type="store.tacomall.common.entity.seckill.SeckillGoodsItemApply">
+        <id property="goodsItemId" column="goods_item_id"></id>
+        <collection property="goodsItem" column="goods_item_id" select="store.tacomall.common.mapper.goods.GoodsItemMapper.getGoodsItemById"></collection>
+    </resultMap>
+
+    <select id="getSeckillGoodsItemApply" resultMap="seckillGoodsItemApply">
+        SELECT *
+        FROM seckill_goods_item_apply
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="getSeckillGoodsItemApplys" resultMap="seckillGoodsItemApply">
+        SELECT *
+        FROM seckill_goods_item_apply
+        ${ew.customSqlSegment}
+    </select>
+
+
+</mapper>
